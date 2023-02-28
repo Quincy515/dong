@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -61,10 +63,10 @@ class LoginCall {
   }) {
     final body = '''
 {
-  "username": "${username}",
-  "password": "${password}",
-  "captcha": "${captcha}",
-  "captchaId": "${captchaId}"
+  "username": "$username",
+  "password": "$password",
+  "captcha": "$captcha",
+  "captchaId": "$captchaId"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
@@ -129,16 +131,16 @@ class AdminregisterCall {
   }) {
     final body = '''
 {
-  "password": "${password}",
-  "nickName": "${nickName}",
-  "headerImg": "${headerImg}",
+  "password": "$password",
+  "nickName": "$nickName",
+  "headerImg": "$headerImg",
   "authorityId": 888,
   "authorityIds": [
     888,
     8881
   ],
   "enable": 1,
-  "userName": "${userName}"
+  "userName": "$userName"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'adminregister',
@@ -187,8 +189,8 @@ class GetUserListCall {
   }) {
     final body = '''
 {
-  "page": ${page},
-  "pageSize": ${pageSize}
+  "page": $page,
+  "pageSize": $pageSize
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getUserList',
@@ -252,8 +254,8 @@ class GetFileListCall {
   }) {
     final body = '''
 {
-  "page": ${page},
-  "pageSize": ${pageSize}
+  "page": $page,
+  "pageSize": $pageSize
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getFileList',

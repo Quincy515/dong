@@ -7,10 +7,6 @@
     {
       "path": "web",
       "name": "frontend"
-    },
-    {
-      "path": ".",
-      "name": "root"
     }
   ],
   "settings": {

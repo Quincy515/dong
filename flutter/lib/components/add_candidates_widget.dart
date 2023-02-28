@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AddCandidatesWidget extends StatefulWidget {
   const AddCandidatesWidget({Key? key}) : super(key: key);

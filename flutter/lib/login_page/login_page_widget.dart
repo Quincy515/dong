@@ -1,9 +1,12 @@
-import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'login_page_model.dart';
+export 'login_page_model.dart';
 
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({Key? key}) : super(key: key);
@@ -13,42 +16,42 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  ApiCallResponse? loginRes;
-  TextEditingController? captchaController;
-  TextEditingController? passwordController;
+  late LoginPageModel _model;
 
-  late bool passwordVisibility;
-  TextEditingController? usernameController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    captchaController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVisibility = false;
-    usernameController = TextEditingController();
+    _model = createModel(context, () => LoginPageModel());
+
+    _model.usernameController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController();
+    _model.captchaController ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    captchaController?.dispose();
-    passwordController?.dispose();
-    usernameController?.dispose();
+    _model.dispose();
+
+    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 1,
+            width: MediaQuery.of(context).size.width * 1.0,
+            height: MediaQuery.of(context).size.height * 1.0,
             decoration: BoxDecoration(),
             child: SingleChildScrollView(
               child: Column(
@@ -57,21 +60,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           'assets/images/LOGO.png',
-                          height: 150,
+                          height: 150.0,
                           fit: BoxFit.fitWidth,
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    width: 375,
+                    width: 375.0,
                     constraints: BoxConstraints(
                       maxWidth: double.infinity,
                     ),
@@ -79,12 +83,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 3,
+                          blurRadius: 3.0,
                           color: Color(0x24000000),
-                          offset: Offset(0, -1),
+                          offset: Offset(0.0, -1.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: FutureBuilder<ApiCallResponse>(
                       future: BaseGroup.getCaptchaCall.call(),
@@ -93,8 +97,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 50,
-                              height: 50,
+                              width: 50.0,
+                              height: 50.0,
                               child: CircularProgressIndicator(
                                 color:
                                     FlutterFlowTheme.of(context).primaryColor,
@@ -107,8 +111,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 16.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -120,21 +124,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: Color(0xFF0F1113),
-                                            fontSize: 32,
+                                            fontSize: 32.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
                                   FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 44,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 44.0,
                                     fillColor: Colors.white,
                                     icon: Icon(
                                       Icons.people_outline_sharp,
                                       color: Color(0xFF57636C),
-                                      size: 24,
+                                      size: 24.0,
                                     ),
                                     onPressed: () {
                                       print('IconButton pressed ...');
@@ -144,15 +148,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 16.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: TextFormField(
-                                      controller: usernameController,
+                                      controller: _model.usernameController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'Username',
@@ -161,7 +165,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 16,
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         hintText: '请输入用户名...',
@@ -170,71 +174,74 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 14,
+                                              fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            color: Color(0x00000000),
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         filled: true,
                                         fillColor: Colors.white,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                16, 24, 0, 24),
+                                                16.0, 24.0, 0.0, 24.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: Color(0xFF0F1113),
-                                            fontSize: 18,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
                                           ),
+                                      validator: _model
+                                          .usernameControllerValidator
+                                          .asValidator(context),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 16.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: TextFormField(
-                                      controller: passwordController,
-                                      obscureText: !passwordVisibility,
+                                      controller: _model.passwordController,
+                                      obscureText: !_model.passwordVisibility,
                                       decoration: InputDecoration(
                                         labelText: 'Password',
                                         labelStyle: FlutterFlowTheme.of(context)
@@ -242,7 +249,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 16,
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         hintText: '请输入密码...',
@@ -251,59 +258,59 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 14,
+                                              fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            color: Color(0x00000000),
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         filled: true,
                                         fillColor: Colors.white,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                16, 24, 0, 24),
+                                                16.0, 24.0, 0.0, 24.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
-                                            () => passwordVisibility =
-                                                !passwordVisibility,
+                                            () => _model.passwordVisibility =
+                                                !_model.passwordVisibility,
                                           ),
                                           focusNode:
                                               FocusNode(skipTraversal: true),
                                           child: Icon(
-                                            passwordVisibility
+                                            _model.passwordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
                                             color: Color(0xFF95A1AC),
-                                            size: 22,
+                                            size: 22.0,
                                           ),
                                         ),
                                       ),
@@ -312,24 +319,27 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: Color(0xFF0F1113),
-                                            fontSize: 18,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
                                           ),
+                                      validator: _model
+                                          .passwordControllerValidator
+                                          .asValidator(context),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 16.0, 20.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: TextFormField(
-                                      controller: captchaController,
+                                      controller: _model.captchaController,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'Captcha',
@@ -338,7 +348,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 16,
+                                              fontSize: 16.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         hintText: '请输入验证码...',
@@ -347,66 +357,69 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             .override(
                                               fontFamily: 'Outfit',
                                               color: Color(0xFF57636C),
-                                              fontSize: 14,
+                                              fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Color(0xFFF1F4F8),
-                                            width: 2,
+                                            color: Color(0x00000000),
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 2.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(8.0),
                                         ),
                                         filled: true,
                                         fillColor: Colors.white,
                                         contentPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                16, 24, 16, 24),
+                                                16.0, 24.0, 16.0, 24.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle1
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: Color(0xFF0F1113),
-                                            fontSize: 18,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
                                           ),
+                                      validator: _model
+                                          .captchaControllerValidator
+                                          .asValidator(context),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        20, 0, 0, 0),
+                                        20.0, 0.0, 0.0, 0.0),
                                     child: Image.network(
                                       BaseGroup.getCaptchaCall.picPath(
                                         columnGetCaptchaResponse.jsonBody,
                                       ),
-                                      width: 135,
-                                      height: 60,
+                                      width: 135.0,
+                                      height: 60.0,
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -415,29 +428,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  20, 12, 20, 16),
+                                  20.0, 12.0, 20.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      loginRes = await BaseGroup.loginCall.call(
-                                        username: usernameController!.text,
-                                        password: passwordController!.text,
+                                      _model.loginRes =
+                                          await BaseGroup.loginCall.call(
+                                        username:
+                                            _model.usernameController.text,
+                                        password:
+                                            _model.passwordController.text,
                                         captchaId: BaseGroup.getCaptchaCall
                                             .captchaId(
                                               columnGetCaptchaResponse.jsonBody,
                                             )
                                             .toString(),
-                                        captcha: captchaController!.text,
+                                        captcha: _model.captchaController.text,
                                       );
-                                      setState(() => FFAppState().xtoken =
-                                          BaseGroup.loginCall
-                                              .token(
-                                                (loginRes?.jsonBody ?? ''),
-                                              )
-                                              .toString());
+                                      FFAppState().update(() {
+                                        FFAppState().xtoken = BaseGroup
+                                            .loginCall
+                                            .token(
+                                              (_model.loginRes?.jsonBody ?? ''),
+                                            )
+                                            .toString();
+                                      });
 
                                       context.goNamed(
                                         'HomePage',
@@ -455,21 +473,26 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     },
                                     text: '登录',
                                     options: FFButtonOptions(
-                                      width: 180,
-                                      height: 50,
+                                      width: 180.0,
+                                      height: 50.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
                                       color: Color(0xFF4B39EF),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .subtitle2
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: Colors.white,
-                                            fontSize: 18,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
                                           ),
-                                      elevation: 2,
+                                      elevation: 2.0,
                                       borderSide: BorderSide(
                                         color: Colors.transparent,
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                     ),
                                   ),
@@ -482,8 +505,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                   ),
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 100.0,
+                    height: 100.0,
                     decoration: BoxDecoration(),
                   ),
                 ],

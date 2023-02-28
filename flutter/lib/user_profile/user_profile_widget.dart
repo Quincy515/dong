@@ -1,8 +1,11 @@
-import '../components/web_nav_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/components/web_nav_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'user_profile_model.dart';
+export 'user_profile_model.dart';
 
 class UserProfileWidget extends StatefulWidget {
   const UserProfileWidget({Key? key}) : super(key: key);
@@ -12,110 +15,81 @@ class UserProfileWidget extends StatefulWidget {
 }
 
 class _UserProfileWidgetState extends State<UserProfileWidget> {
-  TextEditingController? bumenController;
-  TextEditingController? ruzhishijianController;
-  TextEditingController? laodonghetongkaishishijianController;
-  TextEditingController? laodonghetongjiezjiezhishijianController;
-  TextEditingController? wenhuachengduController;
-  TextEditingController? lianxidianhuaController;
-  TextEditingController? nianlingController;
-  TextEditingController? xingbieController;
-  TextEditingController? lizhishijianController;
-  TextEditingController? hukousuozaidiController;
-  TextEditingController? xianjuzhudizhiController;
-  TextEditingController? chushengriqiController;
-  TextEditingController? shenfenzhenghaomaController;
-  TextEditingController? hetongyuedinggongziController;
-  TextEditingController? congshigangweihuogongzhongController;
-  TextEditingController? nianfeiController;
-  TextEditingController? zhuanyeController;
-  TextEditingController? zhiyezigeController;
-  TextEditingController? zhucebianhaoController;
-  TextEditingController? youxiaoqiController;
-  TextEditingController? zhengshushijianController;
-  final formKey = GlobalKey<FormState>();
+  late UserProfileModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    bumenController = TextEditingController();
-    ruzhishijianController = TextEditingController();
-    laodonghetongkaishishijianController = TextEditingController();
-    laodonghetongjiezjiezhishijianController = TextEditingController();
-    wenhuachengduController = TextEditingController();
-    lianxidianhuaController = TextEditingController();
-    nianlingController = TextEditingController();
-    xingbieController = TextEditingController();
-    lizhishijianController = TextEditingController();
-    hukousuozaidiController = TextEditingController();
-    xianjuzhudizhiController = TextEditingController();
-    chushengriqiController = TextEditingController();
-    shenfenzhenghaomaController = TextEditingController();
-    hetongyuedinggongziController = TextEditingController();
-    congshigangweihuogongzhongController = TextEditingController();
-    nianfeiController = TextEditingController();
-    zhuanyeController = TextEditingController();
-    zhiyezigeController = TextEditingController();
-    zhucebianhaoController = TextEditingController();
-    youxiaoqiController = TextEditingController();
-    zhengshushijianController = TextEditingController();
+    _model = createModel(context, () => UserProfileModel());
+
+    _model.xingbieController ??= TextEditingController();
+    _model.nianlingController ??= TextEditingController();
+    _model.lianxidianhuaController ??= TextEditingController();
+    _model.lizhishijianController ??= TextEditingController();
+    _model.bumenController ??= TextEditingController();
+    _model.ruzhishijianController ??= TextEditingController();
+    _model.laodonghetongkaishishijianController ??= TextEditingController();
+    _model.laodonghetongjiezjiezhishijianController ??= TextEditingController();
+    _model.wenhuachengduController ??= TextEditingController();
+    _model.hukousuozaidiController ??= TextEditingController();
+    _model.xianjuzhudizhiController ??= TextEditingController();
+    _model.shenfenzhenghaomaController ??= TextEditingController();
+    _model.chushengriqiController ??= TextEditingController();
+    _model.hetongyuedinggongziController ??= TextEditingController();
+    _model.congshigangweihuogongzhongController ??= TextEditingController();
+    _model.zhiyezigeController ??= TextEditingController();
+    _model.zhucebianhaoController ??= TextEditingController();
+    _model.zhuanyeController ??= TextEditingController();
+    _model.nianfeiController ??= TextEditingController();
+    _model.zhengshushijianController ??= TextEditingController();
+    _model.youxiaoqiController ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    bumenController?.dispose();
-    ruzhishijianController?.dispose();
-    laodonghetongkaishishijianController?.dispose();
-    laodonghetongjiezjiezhishijianController?.dispose();
-    wenhuachengduController?.dispose();
-    lianxidianhuaController?.dispose();
-    nianlingController?.dispose();
-    xingbieController?.dispose();
-    lizhishijianController?.dispose();
-    hukousuozaidiController?.dispose();
-    xianjuzhudizhiController?.dispose();
-    chushengriqiController?.dispose();
-    shenfenzhenghaomaController?.dispose();
-    hetongyuedinggongziController?.dispose();
-    congshigangweihuogongzhongController?.dispose();
-    nianfeiController?.dispose();
-    zhuanyeController?.dispose();
-    zhiyezigeController?.dispose();
-    zhucebianhaoController?.dispose();
-    youxiaoqiController?.dispose();
-    zhengshushijianController?.dispose();
+    _model.dispose();
+
+    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              WebNavWidget(
-                navBgOne: FlutterFlowTheme.of(context).primaryBackground,
-                navColorOne: FlutterFlowTheme.of(context).secondaryBackground,
-                navBgTwo: FlutterFlowTheme.of(context).secondaryBackground,
-                navColorTwo: FlutterFlowTheme.of(context).secondaryText,
-                navBgThree: FlutterFlowTheme.of(context).secondaryBackground,
-                navColorThree: FlutterFlowTheme.of(context).secondaryText,
-                navBgFour: FlutterFlowTheme.of(context).secondaryBackground,
-                navColorFour: FlutterFlowTheme.of(context).secondaryText,
-                navBgFive: FlutterFlowTheme.of(context).secondaryBackground,
-                navColorFive: FlutterFlowTheme.of(context).secondaryText,
+              wrapWithModel(
+                model: _model.webNavModel,
+                updateCallback: () => setState(() {}),
+                child: WebNavWidget(
+                  navBgOne: FlutterFlowTheme.of(context).primaryBackground,
+                  navColorOne: FlutterFlowTheme.of(context).secondaryBackground,
+                  navBgTwo: FlutterFlowTheme.of(context).secondaryBackground,
+                  navColorTwo: FlutterFlowTheme.of(context).secondaryText,
+                  navBgThree: FlutterFlowTheme.of(context).secondaryBackground,
+                  navColorThree: FlutterFlowTheme.of(context).secondaryText,
+                  navBgFour: FlutterFlowTheme.of(context).secondaryBackground,
+                  navColorFour: FlutterFlowTheme.of(context).secondaryText,
+                  navBgFive: FlutterFlowTheme.of(context).secondaryBackground,
+                  navColorFive: FlutterFlowTheme.of(context).secondaryText,
+                ),
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                   child: Form(
-                    key: formKey,
+                    key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -132,7 +106,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                     .secondaryBackground,
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
+                                      8.0, 8.0, 8.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -140,13 +114,15 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            width: 85,
+                                            width: 85.0,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(0),
-                                                bottomRight: Radius.circular(0),
-                                                topLeft: Radius.circular(8),
-                                                topRight: Radius.circular(0),
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(0.0),
+                                                topLeft: Radius.circular(8.0),
+                                                topRight: Radius.circular(0.0),
                                               ),
                                               border: Border.all(
                                                 color:
@@ -155,7 +131,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller: xingbieController,
+                                              controller:
+                                                  _model.xingbieController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '性别',
@@ -166,7 +143,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -180,7 +157,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -194,7 +171,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -208,7 +185,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -227,10 +204,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .xingbieControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 85,
+                                            width: 85.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -239,7 +219,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller: nianlingController,
+                                              controller:
+                                                  _model.nianlingController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '年龄',
@@ -250,7 +231,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -264,7 +245,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -278,7 +259,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -292,7 +273,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -311,10 +292,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .nianlingControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 255,
+                                            width: 255.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -323,8 +307,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  lianxidianhuaController,
+                                              controller: _model
+                                                  .lianxidianhuaController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '联系电话',
@@ -335,7 +319,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -349,7 +333,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -363,7 +347,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -377,7 +361,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -396,16 +380,21 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .lianxidianhuaControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 255,
+                                            width: 255.0,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(0),
-                                                bottomRight: Radius.circular(0),
-                                                topLeft: Radius.circular(0),
-                                                topRight: Radius.circular(8),
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(0.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(8.0),
                                               ),
                                               border: Border.all(
                                                 color:
@@ -415,7 +404,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                             ),
                                             child: TextFormField(
                                               controller:
-                                                  lizhishijianController,
+                                                  _model.lizhishijianController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '离职时间',
@@ -426,7 +415,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -440,7 +429,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -454,7 +443,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -468,7 +457,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -489,6 +478,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .lizhishijianControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -497,7 +489,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            width: 85,
+                                            width: 85.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -506,7 +498,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller: bumenController,
+                                              controller:
+                                                  _model.bumenController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '部门',
@@ -517,7 +510,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -531,7 +524,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -545,7 +538,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -559,7 +552,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -578,10 +571,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .bumenControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -591,7 +587,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                             ),
                                             child: TextFormField(
                                               controller:
-                                                  ruzhishijianController,
+                                                  _model.ruzhishijianController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '入职时间',
@@ -602,7 +598,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -616,7 +612,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -630,7 +626,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -644,7 +640,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -665,10 +661,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .ruzhishijianControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -677,8 +676,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  laodonghetongkaishishijianController,
+                                              controller: _model
+                                                  .laodonghetongkaishishijianController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '劳动合同开始时间',
@@ -689,7 +688,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -703,7 +702,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -717,7 +716,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -731,7 +730,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -752,10 +751,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .laodonghetongkaishishijianControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -764,8 +766,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  laodonghetongjiezjiezhishijianController,
+                                              controller: _model
+                                                  .laodonghetongjiezjiezhishijianController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '劳动合同截止时间',
@@ -776,7 +778,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -790,7 +792,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -804,7 +806,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -818,7 +820,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -839,10 +841,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .laodonghetongjiezjiezhishijianControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 85,
+                                            width: 85.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -851,8 +856,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  wenhuachengduController,
+                                              controller: _model
+                                                  .wenhuachengduController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '文化程度',
@@ -863,7 +868,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -877,7 +882,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -891,7 +896,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -905,7 +910,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -924,6 +929,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .wenhuachengduControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -932,7 +940,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            width: 340,
+                                            width: 340.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -941,8 +949,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  hukousuozaidiController,
+                                              controller: _model
+                                                  .hukousuozaidiController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '户口所在地',
@@ -953,7 +961,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -967,7 +975,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -981,7 +989,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -995,7 +1003,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1014,10 +1022,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .hukousuozaidiControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 340,
+                                            width: 340.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -1026,8 +1037,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  xianjuzhudizhiController,
+                                              controller: _model
+                                                  .xianjuzhudizhiController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '现居住地址',
@@ -1038,7 +1049,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1052,7 +1063,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1066,7 +1077,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1080,7 +1091,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1100,6 +1111,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                             FontWeight.normal,
                                                       ),
                                               maxLines: null,
+                                              validator: _model
+                                                  .xianjuzhudizhiControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -1108,13 +1122,15 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(8),
-                                                bottomRight: Radius.circular(0),
-                                                topLeft: Radius.circular(0),
-                                                topRight: Radius.circular(0),
+                                                bottomLeft:
+                                                    Radius.circular(8.0),
+                                                bottomRight:
+                                                    Radius.circular(0.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(0.0),
                                               ),
                                               border: Border.all(
                                                 color:
@@ -1123,8 +1139,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  shenfenzhenghaomaController,
+                                              controller: _model
+                                                  .shenfenzhenghaomaController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '身份证号码',
@@ -1135,7 +1151,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1149,7 +1165,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1163,7 +1179,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1177,7 +1193,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1196,10 +1212,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .shenfenzhenghaomaControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -1209,7 +1228,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                             ),
                                             child: TextFormField(
                                               controller:
-                                                  chushengriqiController,
+                                                  _model.chushengriqiController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '出生日期',
@@ -1220,7 +1239,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1234,7 +1253,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1248,7 +1267,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1262,7 +1281,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1283,10 +1302,13 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .chushengriqiControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color:
@@ -1295,8 +1317,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  hetongyuedinggongziController,
+                                              controller: _model
+                                                  .hetongyuedinggongziController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '合同约定工资',
@@ -1307,7 +1329,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1321,7 +1343,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1335,7 +1357,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1349,7 +1371,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1368,16 +1390,21 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .hetongyuedinggongziControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 170,
+                                            width: 170.0,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(0),
-                                                bottomRight: Radius.circular(8),
-                                                topLeft: Radius.circular(0),
-                                                topRight: Radius.circular(0),
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(8.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(0.0),
                                               ),
                                               border: Border.all(
                                                 color:
@@ -1386,8 +1413,8 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                               ),
                                             ),
                                             child: TextFormField(
-                                              controller:
-                                                  congshigangweihuogongzhongController,
+                                              controller: _model
+                                                  .congshigangweihuogongzhongController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '从事岗位或工种',
@@ -1398,7 +1425,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1412,7 +1439,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1426,7 +1453,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1440,7 +1467,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1459,6 +1486,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .congshigangweihuogongzhongControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -1469,12 +1499,12 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 12, 12, 12),
+                                    16.0, 12.0, 12.0, 12.0),
                                 child: Container(
                                   decoration: BoxDecoration(),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 12, 12, 12),
+                                        12.0, 12.0, 12.0, 12.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -1482,18 +1512,18 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                       children: [
                                         ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(60),
+                                              BorderRadius.circular(60.0),
                                           child: Image.network(
                                             'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                                            width: 120,
-                                            height: 120,
+                                            width: 120.0,
+                                            height: 120.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
+                                                  0.0, 8.0, 0.0, 0.0),
                                           child: Text(
                                             '昵称',
                                             style: FlutterFlowTheme.of(context)
@@ -1501,7 +1531,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                 .override(
                                                   fontFamily: 'Outfit',
                                                   color: Color(0xFF101213),
-                                                  fontSize: 18,
+                                                  fontSize: 18.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
@@ -1509,7 +1539,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
+                                                  0.0, 4.0, 0.0, 0.0),
                                           child: Text(
                                             '用户名',
                                             style: FlutterFlowTheme.of(context)
@@ -1517,7 +1547,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                 .override(
                                                   fontFamily: 'Outfit',
                                                   color: Color(0xFF57636C),
-                                                  fontSize: 14,
+                                                  fontSize: 14.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -1542,7 +1572,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                     .secondaryBackground,
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
+                                      8.0, 8.0, 8.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1550,10 +1580,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
-                                              controller: zhiyezigeController,
+                                              controller:
+                                                  _model.zhiyezigeController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '执业资格',
@@ -1564,7 +1595,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1578,7 +1609,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1592,7 +1623,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1606,7 +1637,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1625,14 +1656,17 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .zhiyezigeControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
                                               controller:
-                                                  zhucebianhaoController,
+                                                  _model.zhucebianhaoController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '注册编号',
@@ -1643,7 +1677,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1657,7 +1691,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1671,7 +1705,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1685,7 +1719,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1704,6 +1738,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .zhucebianhaoControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -1712,10 +1749,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
-                                              controller: zhuanyeController,
+                                              controller:
+                                                  _model.zhuanyeController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '专业',
@@ -1726,7 +1764,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1740,7 +1778,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1754,7 +1792,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1768,7 +1806,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1787,13 +1825,17 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .zhuanyeControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
-                                              controller: nianfeiController,
+                                              controller:
+                                                  _model.nianfeiController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '年费',
@@ -1804,7 +1846,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1818,7 +1860,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1832,7 +1874,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1846,7 +1888,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1865,6 +1907,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .nianfeiControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -1873,11 +1918,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
-                                              controller:
-                                                  zhengshushijianController,
+                                              controller: _model
+                                                  .zhengshushijianController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '证书时间',
@@ -1888,7 +1933,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1902,7 +1947,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1916,7 +1961,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1930,7 +1975,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1951,13 +1996,17 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                       ),
                                               keyboardType:
                                                   TextInputType.datetime,
+                                              validator: _model
+                                                  .zhengshushijianControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                           Container(
-                                            width: 200,
+                                            width: 200.0,
                                             decoration: BoxDecoration(),
                                             child: TextFormField(
-                                              controller: youxiaoqiController,
+                                              controller:
+                                                  _model.youxiaoqiController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: '有效期',
@@ -1968,7 +2017,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1982,7 +2031,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -1996,7 +2045,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -2010,7 +2059,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
                                                       const BorderRadius.only(
@@ -2029,6 +2078,9 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                              validator: _model
+                                                  .youxiaoqiControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ],
@@ -2039,17 +2091,17 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                               ),
                               FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
-                                borderRadius: 60,
-                                borderWidth: 1,
-                                buttonSize: 120,
+                                borderRadius: 60.0,
+                                borderWidth: 1.0,
+                                buttonSize: 120.0,
                                 icon: Icon(
                                   Icons.post_add_outlined,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 60,
+                                  size: 60.0,
                                 ),
                                 onPressed: () {
-                                  context.goNamed('Document');
+                                  print('IconButton pressed ...');
                                 },
                               ),
                             ],

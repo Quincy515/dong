@@ -1,14 +1,15 @@
-import 'package:async/async.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
-import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import 'package:provider/provider.dart';
+import 'web_nav_model.dart';
+export 'web_nav_model.dart';
 
 class WebNavWidget extends StatefulWidget {
   const WebNavWidget({
@@ -42,7 +43,8 @@ class WebNavWidget extends StatefulWidget {
 
 class _WebNavWidgetState extends State<WebNavWidget>
     with TickerProviderStateMixin {
-  ApiCallResponse? res;
+  late WebNavModel _model;
+
   var hasContainerTriggered1 = false;
   var hasContainerTriggered2 = false;
   final animationsMap = {
@@ -54,8 +56,8 @@ class _WebNavWidgetState extends State<WebNavWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 350.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
+          begin: Offset(40.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -67,53 +69,64 @@ class _WebNavWidgetState extends State<WebNavWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 350.ms,
-          begin: Offset(-40, 0),
-          end: Offset(0, 0),
+          begin: Offset(-40.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
   };
 
-  late AsyncMemoizer _memoizer;
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => WebNavModel());
+
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
           !anim.applyInitialState),
       this,
     );
+  }
 
-    _memoizer = AsyncMemoizer();
+  @override
+  void dispose() {
+    _model.maybeDispose();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
-      width: 250,
+      width: 250.0,
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         boxShadow: [
           BoxShadow(
-            blurRadius: 0,
+            blurRadius: 0.0,
             color: FlutterFlowTheme.of(context).lineColor,
-            offset: Offset(1, 1),
+            offset: Offset(1.0, 1.0),
           )
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+        padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -154,16 +167,16 @@ class _WebNavWidgetState extends State<WebNavWidget>
                       },
                       child: Image.asset(
                         'assets/images/LOGO_row.png',
-                        width: 130,
-                        height: 40,
+                        width: 130.0,
+                        height: 40.0,
                         fit: BoxFit.fitWidth,
                       ),
                     ),
                   if (Theme.of(context).brightness == Brightness.dark)
                     Image.asset(
                       'assets/images/LOGO_row.png',
-                      width: 130,
-                      height: 40,
+                      width: 130.0,
+                      height: 40.0,
                       fit: BoxFit.fitWidth,
                     ),
                 ],
@@ -182,8 +195,8 @@ class _WebNavWidgetState extends State<WebNavWidget>
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50,
-                        height: 50,
+                        width: 50.0,
+                        height: 50.0,
                         child: CircularProgressIndicator(
                           color: FlutterFlowTheme.of(context).primaryColor,
                         ),
@@ -191,190 +204,142 @@ class _WebNavWidgetState extends State<WebNavWidget>
                     );
                   }
                   final columnGetMenuResponse = snapshot.data!;
-                  if (BaseGroup.getMenuCall.code(
-                        columnGetMenuResponse.jsonBody,
-                      ) !=
-                      0) {
-                    this._memoizer.runOnce(() async {
-                      Future.delayed(const Duration(milliseconds: 200), () {
-                        context.goNamed('loginPage');
-                      });
-                    });
-                  }
                   return Builder(
                     builder: (context) {
-                      if (BaseGroup.getMenuCall.menus(
-                            columnGetMenuResponse.jsonBody,
-                          ) !=
-                          null) {
-                        final menus = BaseGroup.getMenuCall
-                            .menus(
-                              columnGetMenuResponse.jsonBody,
-                            )
-                            .toList();
-                        return SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: List.generate(menus.length, (menusIndex) {
-                              final menusItem = menus[menusIndex];
-                              return Visibility(
-                                visible: BaseGroup.getMenuCall.code(
-                                          columnGetMenuResponse.jsonBody,
-                                        ) ==
-                                        0
-                                    ? true
-                                    : false,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 16),
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: widget.navBgOne,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 12, 12, 12),
-                                          child: Row(
+                      final menus = BaseGroup.getMenuCall
+                              .menus(
+                                columnGetMenuResponse.jsonBody,
+                              )
+                              ?.toList() ??
+                          [];
+                      return SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(menus.length, (menusIndex) {
+                            final menusItem = menus[menusIndex];
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 16.0),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: widget.navBgOne,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 12.0, 12.0, 12.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Icon(
-                                                    Icons.dashboard_rounded,
-                                                    color: widget.navColorOne,
-                                                    size: 24,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                12, 0, 0, 0),
-                                                    child: AutoSizeText(
-                                                      getJsonField(
-                                                        menusItem,
-                                                        r'''$.meta.title''',
-                                                      ).toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
-                                                    ),
-                                                  ),
-                                                ],
+                                              Icon(
+                                                Icons.dashboard_rounded,
+                                                color: widget.navColorOne,
+                                                size: 24.0,
                                               ),
-                                              if (getJsonField(
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 0.0, 0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  getJsonField(
                                                     menusItem,
-                                                    r'''$.children''',
-                                                  ) ==
-                                                  null)
-                                                Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  color: Colors.black,
-                                                  size: 24,
+                                                    r'''$.meta.title''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText2,
                                                 ),
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                        if (getJsonField(
-                                              menusItem,
-                                              r'''$.children''',
-                                            ) !=
-                                            null)
-                                          Builder(
-                                            builder: (context) {
-                                              final children = getJsonField(
+                                          if (getJsonField(
                                                 menusItem,
                                                 r'''$.children''',
-                                              ).toList();
-                                              return Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: List.generate(
-                                                    children.length,
+                                              ) ==
+                                              null)
+                                            Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: Colors.black,
+                                              size: 24.0,
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (getJsonField(
+                                      menusItem,
+                                      r'''$.children''',
+                                    ))
+                                      Builder(
+                                        builder: (context) {
+                                          final children = getJsonField(
+                                            menusItem,
+                                            r'''$.children''',
+                                          ).toList();
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children:
+                                                List.generate(children.length,
                                                     (childrenIndex) {
-                                                  final childrenItem =
-                                                      children[childrenIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                24, 0, 0, 12),
-                                                    child: InkWell(
-                                                      highlightColor:
-                                                          Colors.blue,
-                                                      autofocus: true,
-                                                      onTap: () async {
-                                                        Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    300), () {
-                                                          context.goNamed(
-                                                              getJsonField(
-                                                            childrenItem,
-                                                            r'''$.path''',
-                                                          ).toString());
-                                                        });
-                                                      },
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .dashboard_rounded,
-                                                            color: widget
-                                                                .navColorOne,
-                                                            size: 24,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                            child: AutoSizeText(
-                                                              getJsonField(
-                                                                childrenItem,
-                                                                r'''$.meta.title''',
-                                                              ).toString(),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText2,
-                                                            ),
-                                                          ),
-                                                        ],
+                                              final childrenItem =
+                                                  children[childrenIndex];
+                                              return Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 0.0, 12.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.dashboard_rounded,
+                                                      color: widget.navColorOne,
+                                                      size: 24.0,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: AutoSizeText(
+                                                        getJsonField(
+                                                          childrenItem,
+                                                          r'''$.meta.title''',
+                                                        ).toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2,
                                                       ),
                                                     ),
-                                                  );
-                                                }),
+                                                  ],
+                                                ),
                                               );
-                                            },
-                                          ),
-                                      ],
-                                    ),
-                                  ),
+                                            }),
+                                          );
+                                        },
+                                      ),
+                                  ],
                                 ),
-                              );
-                            }),
-                          ),
-                        );
-                      } else {
-                        return Container();
-                      }
+                              ),
+                            );
+                          }),
+                        ),
+                      );
                     },
                   );
                 },
@@ -382,13 +347,14 @@ class _WebNavWidgetState extends State<WebNavWidget>
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -408,63 +374,66 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                 }
                               },
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
+                                width: MediaQuery.of(context).size.width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 12),
+                                      0.0, 12.0, 0.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        width: 80,
-                                        height: 40,
+                                        width: 80.0,
+                                        height: 40.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           children: [
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(0.95, 0),
+                                              alignment: AlignmentDirectional(
+                                                  0.95, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 8, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 8.0, 0.0),
                                                 child: Icon(
                                                   Icons.nights_stay,
                                                   color: Color(0xFF95A1AC),
-                                                  size: 20,
+                                                  size: 20.0,
                                                 ),
                                               ),
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -0.85, 0),
+                                                  -0.85, 0.0),
                                               child: Container(
-                                                width: 36,
-                                                height: 36,
+                                                width: 36.0,
+                                                height: 36.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      blurRadius: 4,
+                                                      blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
-                                                      offset: Offset(0, 2),
+                                                      offset: Offset(0.0, 2.0),
                                                     )
                                                   ],
                                                   borderRadius:
-                                                      BorderRadius.circular(30),
+                                                      BorderRadius.circular(
+                                                          30.0),
                                                   shape: BoxShape.rectangle,
                                                 ),
                                               ).animateOnActionTrigger(
@@ -497,63 +466,66 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                 }
                               },
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
+                                width: MediaQuery.of(context).size.width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 12, 12),
+                                      0.0, 12.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        width: 80,
-                                        height: 40,
+                                        width: 80.0,
+                                        height: 40.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           children: [
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(-0.9, 0),
+                                              alignment: AlignmentDirectional(
+                                                  -0.9, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 2, 0, 0),
+                                                    .fromSTEB(
+                                                        8.0, 2.0, 0.0, 0.0),
                                                 child: Icon(
                                                   Icons.wb_sunny_rounded,
                                                   color: Color(0xFF95A1AC),
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                               ),
                                             ),
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(0.9, 0),
+                                              alignment: AlignmentDirectional(
+                                                  0.9, 0.0),
                                               child: Container(
-                                                width: 36,
-                                                height: 36,
+                                                width: 36.0,
+                                                height: 36.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      blurRadius: 4,
+                                                      blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
-                                                      offset: Offset(0, 2),
+                                                      offset: Offset(0.0, 2.0),
                                                     )
                                                   ],
                                                   borderRadius:
-                                                      BorderRadius.circular(30),
+                                                      BorderRadius.circular(
+                                                          30.0),
                                                   shape: BoxShape.rectangle,
                                                 ),
                                               ).animateOnActionTrigger(
@@ -575,24 +547,25 @@ class _WebNavWidgetState extends State<WebNavWidget>
                     ),
                     Divider(),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(50.0),
                             child: CachedNetworkImage(
                               imageUrl:
                                   'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-                              width: 50,
-                              height: 50,
+                              width: 50.0,
+                              height: 50.0,
                               fit: BoxFit.cover,
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -608,7 +581,7 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                         .bodyText2
                                         .override(
                                           fontFamily: 'Poppins',
-                                          fontSize: 12,
+                                          fontSize: 12.0,
                                         ),
                                   ),
                                 ],
@@ -617,17 +590,16 @@ class _WebNavWidgetState extends State<WebNavWidget>
                           ),
                           InkWell(
                             onTap: () async {
-                              setState(() => FFAppState().xtoken = '');
-
-                              Future.delayed(const Duration(milliseconds: 200),
-                                  () {
-                                context.goNamed('LoginPage');
+                              FFAppState().update(() {
+                                FFAppState().xtoken = '';
                               });
+
+                              context.goNamed('LoginPage');
                             },
                             child: Icon(
                               Icons.login_outlined,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24,
+                              size: 24.0,
                             ),
                           ),
                         ],

@@ -1,22 +1,20 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unnecessary_question_mark, unnecessary_brace_in_string_interps, unused_import, unused_element
 
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
+import 'dart:typed_data';
 
 import '../../flutter_flow/flutter_flow_util.dart';
 
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
-import 'package:file_picker/file_picker.dart';
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 /// Start base Group Code
 
 class BaseGroup {
-  static String baseUrl = 'http://49.235.89.171:8975';
+  static String baseUrl = 'http://119.45.234.161:8888';
   static Map<String, String> headers = {};
   static GetCaptchaCall getCaptchaCall = GetCaptchaCall();
   static LoginCall loginCall = LoginCall();
@@ -36,6 +34,8 @@ class GetCaptchaCall {
       params: {},
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -63,10 +63,10 @@ class LoginCall {
   }) {
     final body = '''
 {
-  "username": "$username",
-  "password": "$password",
-  "captcha": "$captcha",
-  "captchaId": "$captchaId"
+  "username": "${username}",
+  "password": "${password}",
+  "captcha": "${captcha}",
+  "captchaId": "${captchaId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
@@ -79,6 +79,8 @@ class LoginCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -97,12 +99,14 @@ class GetMenuCall {
       callType: ApiCallType.POST,
       headers: {
         ...BaseGroup.headers,
-        'x-token': FFAppState().xtoken
-        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+        'x-token':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
       },
       params: {},
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -131,16 +135,16 @@ class AdminregisterCall {
   }) {
     final body = '''
 {
-  "password": "$password",
-  "nickName": "$nickName",
-  "headerImg": "$headerImg",
+  "password": "${password}",
+  "nickName": "${nickName}",
+  "headerImg": "${headerImg}",
   "authorityId": 888,
   "authorityIds": [
     888,
     8881
   ],
   "enable": 1,
-  "userName": "$userName"
+  "userName": "${userName}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'adminregister',
@@ -148,13 +152,15 @@ class AdminregisterCall {
       callType: ApiCallType.POST,
       headers: {
         ...BaseGroup.headers,
-        'x-token': FFAppState().xtoken
-        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+        'x-token':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
       },
       params: {},
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -174,10 +180,10 @@ class AdminregisterCall {
 /// Start user Group Code
 
 class UserGroup {
-  static String baseUrl = 'http://49.235.89.171:8975/user';
+  static String baseUrl = 'http://119.45.234.161:8888/user';
   static Map<String, String> headers = {
-    'x-token': FFAppState().xtoken
-    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+    'x-token':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
   };
   static GetUserListCall getUserListCall = GetUserListCall();
 }
@@ -189,8 +195,8 @@ class GetUserListCall {
   }) {
     final body = '''
 {
-  "page": $page,
-  "pageSize": $pageSize
+  "page": ${page},
+  "pageSize": ${pageSize}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getUserList',
@@ -203,6 +209,8 @@ class GetUserListCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -239,10 +247,10 @@ class GetUserListCall {
 /// Start file Group Code
 
 class FileGroup {
-  static String baseUrl = 'http://49.235.89.171:8975';
+  static String baseUrl = 'http://119.45.234.161:8888';
   static Map<String, String> headers = {
-    'x-token': FFAppState().xtoken,
-    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZjk4MjEyZGItMjM0NC00YWZkLWJmODQtNzU1MzFiY2JkMGI3IiwiSUQiOjgsIlVzZXJuYW1lIjoiaW1tYW51ZWwiLCJOaWNrTmFtZSI6IuacseS6kea2myIsIkF1dGhvcml0eUlkIjo5MDAwLCJCdWZmZXJUaW1lIjo4NjQwMCwiZXhwIjoxNjY5NzIzODkxLCJpc3MiOiJxbVBsdXMiLCJuYmYiOjE2NjkxMTgwOTF9.xAAyGMc8Ym5dEqFVOwGz9Oqvzh5jR_R2ZYCNhSe5-JI',
+    'x-token':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZjk4MjEyZGItMjM0NC00YWZkLWJmODQtNzU1MzFiY2JkMGI3IiwiSUQiOjgsIlVzZXJuYW1lIjoiaW1tYW51ZWwiLCJOaWNrTmFtZSI6IuacseS6kea2myIsIkF1dGhvcml0eUlkIjo5MDAwLCJCdWZmZXJUaW1lIjo4NjQwMCwiZXhwIjoxNjY5NzIzODkxLCJpc3MiOiJxbVBsdXMiLCJuYmYiOjE2NjkxMTgwOTF9.xAAyGMc8Ym5dEqFVOwGz9Oqvzh5jR_R2ZYCNhSe5-JI',
   };
   static GetFileListCall getFileListCall = GetFileListCall();
 }
@@ -254,8 +262,8 @@ class GetFileListCall {
   }) {
     final body = '''
 {
-  "page": $page,
-  "pageSize": $pageSize
+  "page": ${page},
+  "pageSize": ${pageSize}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getFileList',
@@ -268,6 +276,8 @@ class GetFileListCall {
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
       cache: false,
     );
   }
@@ -301,6 +311,131 @@ class GetFileListCall {
 
 /// End file Group Code
 
+/// Start jingYingBu Group Code
+
+class JingYingBuGroup {
+  static String baseUrl = 'http://119.45.234.161:8888';
+  static Map<String, String> headers = {
+    'x-token':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiOWQ0ZTM2ZjMtN2I5OS00MDcxLWFjN2YtZDQxZmJhMDc0OWQ1IiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Ik1yLuWlh-a3vCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwMDAwMDAwMDAwLCJleHAiOjE2NzgxNTcxNzEsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY3NzQ5OTI3Nn0.SFIMj4ux7aEG-RQViU5GK6ib_3UkVWRqeyNOxLB20nY',
+  };
+  static GetXiangMuDengJiBiaoListCall getXiangMuDengJiBiaoListCall =
+      GetXiangMuDengJiBiaoListCall();
+  static DeleteXiangMuDengJiBiaoCall deleteXiangMuDengJiBiaoCall =
+      DeleteXiangMuDengJiBiaoCall();
+  static UpdateXiangMuDengJiBiaoCall updateXiangMuDengJiBiaoCall =
+      UpdateXiangMuDengJiBiaoCall();
+}
+
+class GetXiangMuDengJiBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getXiangMuDengJiBiaoList',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/xiangMuDengJiBiao/getXiangMuDengJiBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteXiangMuDengJiBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = "{'ID': $id}";
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteXiangMuDengJiBiao',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/xiangMuDengJiBiao/deleteXiangMuDengJiBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateXiangMuDengJiBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateXiangMuDengJiBiao',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/xiangMuDengJiBiao/updateXiangMuDengJiBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End jingYingBu Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
@@ -326,28 +461,11 @@ String _serializeList(List? list) {
   }
 }
 
-/// 上传文件
-Future<String> uploadFile() async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: FileType.any,
-    allowMultiple: false,
-  );
-  if (result == null) {
-    return '';
-  }
-  PlatformFile file = result.files.first;
-  FormData formData = FormData.fromMap({
-    "file": MultipartFile.fromBytes(file.bytes!, filename: file.name),
-  });
-  var res =
-      await Dio().post('${FileGroup.baseUrl}/fileUploadAndDownload/upload',
-          data: formData,
-          options: Options(headers: {
-            'x-token': FFAppState().xtoken, //ApiDefine.token,
-          }));
-  if (res.data['code'] == 0) {
-    return res.data['msg'];
-  } else {
-    throw Exception('Failed to upload a file');
+String _serializeJson(dynamic jsonVar) {
+  jsonVar ??= {};
+  try {
+    return json.encode(jsonVar);
+  } catch (_) {
+    return '{}';
   }
 }

@@ -31,12 +31,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, _) => HomePageWidget(),
+      errorBuilder: (context, _) => XiangMuDengJiBiaoWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => HomePageWidget(),
+          builder: (context, _) => XiangMuDengJiBiaoWidget(),
           routes: [
             FFRoute(
               name: 'HomePage',
@@ -58,6 +58,51 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'document',
               builder: (context, params) => DocumentWidget(),
             ),
+            FFRoute(
+              name: 'xiangMuDengJiBiao',
+              path: 'xiangMuDengJiBiao',
+              builder: (context, params) => XiangMuDengJiBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'touBiaoShuJuTongJi',
+              path: 'touBiaoShuJuTongJi',
+              builder: (context, params) => TouBiaoShuJuTongJiWidget(),
+            ),
+            FFRoute(
+              name: 'yuanGongHuaMingCe',
+              path: 'yuanGongHuaMingCe',
+              builder: (context, params) => YuanGongHuaMingCeWidget(),
+            ),
+            FFRoute(
+              name: 'meiRiKaoQin',
+              path: 'meiRiKaoQin',
+              builder: (context, params) => MeiRiKaoQinWidget(),
+            ),
+            FFRoute(
+              name: 'kaoQinTongJi',
+              path: 'kaoQinTongJi',
+              builder: (context, params) => KaoQinTongJiWidget(),
+            ),
+            FFRoute(
+              name: 'qingJiaGuanLi',
+              path: 'qingJiaGuanLi',
+              builder: (context, params) => QingJiaGuanLiWidget(),
+            ),
+            FFRoute(
+              name: 'huiYuanGuanLi',
+              path: 'huiYuanGuanLi',
+              builder: (context, params) => HuiYuanGuanLiWidget(),
+            ),
+            FFRoute(
+              name: 'gongSiZhangHaoMiMa',
+              path: 'gongSiZhangHaoMiMa',
+              builder: (context, params) => GongSiZhangHaoMiMaWidget(),
+            ),
+            FFRoute(
+              name: 'gongZhangDengJi',
+              path: 'gongZhangDengJi',
+              builder: (context, params) => GongZhangDengJiWidget(),
+            )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
       ],

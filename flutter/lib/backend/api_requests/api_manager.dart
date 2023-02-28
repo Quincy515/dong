@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:core';
+import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
+
+import '../../flutter_flow/uploaded_file.dart';
 
 enum ApiCallType {
   GET,
@@ -18,6 +22,7 @@ enum BodyType {
   JSON,
   TEXT,
   X_WWW_FORM_URL_ENCODED,
+  MULTIPART,
 }
 
 class ApiCallRecord extends Equatable {
@@ -47,10 +52,14 @@ class ApiCallResponse {
   static ApiCallResponse fromHttpResponse(
     http.Response response,
     bool returnBody,
+    bool decodeUtf8,
   ) {
     var jsonBody;
     try {
-      jsonBody = returnBody ? json.decode(response.body) : null;
+      final responseBody = decodeUtf8 && returnBody
+          ? const Utf8Decoder().convert(response.bodyBytes)
+          : response.body;
+      jsonBody = returnBody ? json.decode(responseBody) : null;
     } catch (_) {}
     return ApiCallResponse(jsonBody, response.headers, response.statusCode);
   }
@@ -95,6 +104,7 @@ class ApiManager {
     Map<String, dynamic> headers,
     Map<String, dynamic> params,
     bool returnBody,
+    bool decodeUtf8,
   ) async {
     if (params.isNotEmpty) {
       final lastUriPart = apiUrl.split('/').last;
@@ -105,7 +115,7 @@ class ApiManager {
     final makeRequest = callType == ApiCallType.GET ? http.get : http.delete;
     final response =
         await makeRequest(Uri.parse(apiUrl), headers: toStringMap(headers));
-    return ApiCallResponse.fromHttpResponse(response, returnBody);
+    return ApiCallResponse.fromHttpResponse(response, returnBody, decodeUtf8);
   }
 
   static Future<ApiCallResponse> requestWithBody(
@@ -116,20 +126,76 @@ class ApiManager {
     String? body,
     BodyType? bodyType,
     bool returnBody,
+    bool encodeBodyUtf8,
+    bool decodeUtf8,
   ) async {
     assert(
-      {ApiCallType.POST, ApiCallType.PUT, ApiCallType.PATCH}.contains(type),
+      {ApiCallType.DELETE, ApiCallType.POST, ApiCallType.PUT, ApiCallType.PATCH}
+          .contains(type),
       'Invalid ApiCallType $type for request with body',
     );
-    final postBody = createBody(headers, params, body, bodyType);
+    final postBody =
+        createBody(headers, params, body, bodyType, encodeBodyUtf8);
+
+    if (bodyType == BodyType.MULTIPART) {
+      return multipartRequest(
+          type, apiUrl, headers, params, returnBody, decodeUtf8);
+    }
+
     final requestFn = {
+      ApiCallType.DELETE: http.delete,
       ApiCallType.POST: http.post,
       ApiCallType.PUT: http.put,
       ApiCallType.PATCH: http.patch,
     }[type]!;
     final response = await requestFn(Uri.parse(apiUrl),
         headers: toStringMap(headers), body: postBody);
-    return ApiCallResponse.fromHttpResponse(response, returnBody);
+    return ApiCallResponse.fromHttpResponse(response, returnBody, decodeUtf8);
+  }
+
+  static Future<ApiCallResponse> multipartRequest(
+    ApiCallType? type,
+    String apiUrl,
+    Map<String, dynamic> headers,
+    Map<String, dynamic> params,
+    bool returnBody,
+    bool decodeUtf8,
+  ) async {
+    assert(
+      {ApiCallType.POST, ApiCallType.PUT, ApiCallType.PATCH}.contains(type),
+      'Invalid ApiCallType $type for request with body',
+    );
+    bool Function(dynamic) _isFile = (e) =>
+        e is FFUploadedFile ||
+        e is List<FFUploadedFile> ||
+        (e is List && e.firstOrNull is FFUploadedFile);
+
+    final nonFileParams =
+        toStringMap(Map.fromEntries(params.entries.where((e) => !_isFile(e))));
+
+    List<http.MultipartFile> files = [];
+    params.entries.where((e) => _isFile(e)).map((e) {
+      final param = e.value;
+      final uploadedFiles = param is List
+          ? param as List<FFUploadedFile>
+          : [param as FFUploadedFile];
+      uploadedFiles.forEach((uploadedFile) => files.add(
+            http.MultipartFile.fromBytes(
+              e.key,
+              uploadedFile.bytes ?? Uint8List.fromList([]),
+              filename: uploadedFile.name,
+            ),
+          ));
+    });
+
+    final request = http.MultipartRequest(
+        type.toString().split('.').last, Uri.parse(apiUrl))
+      ..headers.addAll(toStringMap(headers))
+      ..files.addAll(files);
+    nonFileParams.forEach((key, value) => request.fields[key] = value);
+
+    final response = await http.Response.fromStream(await request.send());
+    return ApiCallResponse.fromHttpResponse(response, returnBody, decodeUtf8);
   }
 
   static dynamic createBody(
@@ -137,6 +203,7 @@ class ApiManager {
     Map<String, dynamic>? params,
     String? body,
     BodyType? bodyType,
+    bool encodeBodyUtf8,
   ) {
     String? contentType;
     dynamic postBody;
@@ -153,14 +220,22 @@ class ApiManager {
         contentType = 'application/x-www-form-urlencoded';
         postBody = toStringMap(params ?? {});
         break;
+      case BodyType.MULTIPART:
+        contentType = 'multipart/form-data';
+        postBody = params;
+        break;
       case BodyType.NONE:
       case null:
         break;
     }
-    if (contentType != null) {
+    // Set "Content-Type" header if it was previously unset.
+    if (contentType != null &&
+        !headers.keys.any((h) => h.toLowerCase() == 'content-type')) {
       headers['Content-Type'] = contentType;
     }
-    return postBody;
+    return encodeBodyUtf8 && postBody is String
+        ? utf8.encode(postBody)
+        : postBody;
   }
 
   Future<ApiCallResponse> makeApiCall({
@@ -172,6 +247,8 @@ class ApiManager {
     String? body,
     BodyType? bodyType,
     bool returnBody = true,
+    bool encodeBodyUtf8 = false,
+    bool decodeUtf8 = false,
     bool cache = false,
   }) async {
     final callRecord =
@@ -194,14 +271,29 @@ class ApiManager {
     switch (callType) {
       case ApiCallType.GET:
       case ApiCallType.DELETE:
-        result =
-            await urlRequest(callType, apiUrl, headers, params, returnBody);
-        break;
+      // result = await urlRequest(
+      //   callType,
+      //   apiUrl,
+      //   headers,
+      //   params,
+      //   returnBody,
+      //   decodeUtf8,
+      // );
+      // break;
       case ApiCallType.POST:
       case ApiCallType.PUT:
       case ApiCallType.PATCH:
         result = await requestWithBody(
-            callType, apiUrl, headers, params, body, bodyType, returnBody);
+          callType,
+          apiUrl,
+          headers,
+          params,
+          body,
+          bodyType,
+          returnBody,
+          encodeBodyUtf8,
+          decodeUtf8,
+        );
         break;
     }
 

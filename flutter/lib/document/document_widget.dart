@@ -1,10 +1,13 @@
-import '../backend/api_requests/api_calls.dart';
-import '../components/web_nav_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/web_nav_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'document_model.dart';
+export 'document_model.dart';
 
 class DocumentWidget extends StatefulWidget {
   const DocumentWidget({Key? key}) : super(key: key);
@@ -14,45 +17,59 @@ class DocumentWidget extends StatefulWidget {
 }
 
 class _DocumentWidgetState extends State<DocumentWidget> {
-  TextEditingController? textController;
+  late DocumentModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    _model = createModel(context, () => DocumentModel());
+
+    _model.textController ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    textController?.dispose();
+    _model.dispose();
+
+    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                WebNavWidget(
-                  navBgOne: FlutterFlowTheme.of(context).primaryBackground,
-                  navColorOne: FlutterFlowTheme.of(context).secondaryBackground,
-                  navBgTwo: FlutterFlowTheme.of(context).secondaryBackground,
-                  navColorTwo: FlutterFlowTheme.of(context).secondaryText,
-                  navBgThree: FlutterFlowTheme.of(context).secondaryBackground,
-                  navColorThree: FlutterFlowTheme.of(context).secondaryText,
-                  navBgFour: FlutterFlowTheme.of(context).secondaryBackground,
-                  navColorFour: FlutterFlowTheme.of(context).secondaryText,
-                  navBgFive: FlutterFlowTheme.of(context).secondaryBackground,
-                  navColorFive: FlutterFlowTheme.of(context).secondaryText,
+                wrapWithModel(
+                  model: _model.webNavModel,
+                  updateCallback: () => setState(() {}),
+                  child: WebNavWidget(
+                    navBgOne: FlutterFlowTheme.of(context).primaryBackground,
+                    navColorOne:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    navBgTwo: FlutterFlowTheme.of(context).secondaryBackground,
+                    navColorTwo: FlutterFlowTheme.of(context).secondaryText,
+                    navBgThree:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    navColorThree: FlutterFlowTheme.of(context).secondaryText,
+                    navBgFour: FlutterFlowTheme.of(context).secondaryBackground,
+                    navColorFour: FlutterFlowTheme.of(context).secondaryText,
+                    navBgFive: FlutterFlowTheme.of(context).secondaryBackground,
+                    navColorFive: FlutterFlowTheme.of(context).secondaryText,
+                  ),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -62,16 +79,17 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         FFButtonWidget(
-                          onPressed: () async {
-                            String msg = await uploadFile();
-                            showSnackbar(context, msg);
-                            FileGroup.getFileListCall
-                                .call(page: 1, pageSize: 10);
+                          onPressed: () {
+                            print('Button pressed ...');
                           },
                           text: '上传文件',
                           options: FFButtonOptions(
-                            width: 130,
-                            height: 40,
+                            width: 130.0,
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
                             color: Colors.transparent,
                             textStyle:
                                 FlutterFlowTheme.of(context).subtitle2.override(
@@ -80,30 +98,30 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                           .secondaryText,
                                       fontWeight: FontWeight.normal,
                                     ),
-                            elevation: 0,
+                            elevation: 0.0,
                             borderSide: BorderSide(
                               color: Colors.transparent,
-                              width: 1,
+                              width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.15,
-                            height: 40,
+                            height: 40.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                               ),
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: TextFormField(
-                                controller: textController,
+                                controller: _model.textController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   hintText: '输入文件名',
@@ -112,7 +130,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
-                                      width: 1,
+                                      width: 1.0,
                                     ),
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(4.0),
@@ -122,7 +140,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
-                                      width: 1,
+                                      width: 1.0,
                                     ),
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(4.0),
@@ -132,7 +150,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   errorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
-                                      width: 1,
+                                      width: 1.0,
                                     ),
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(4.0),
@@ -142,7 +160,7 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   focusedErrorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
-                                      width: 1,
+                                      width: 1.0,
                                     ),
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(4.0),
@@ -151,19 +169,21 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
+                                validator: _model.textControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
                           ),
                         ),
                         FlutterFlowIconButton(
                           borderColor: Colors.transparent,
-                          borderRadius: 30,
-                          borderWidth: 1,
-                          buttonSize: 60,
+                          borderRadius: 30.0,
+                          borderWidth: 1.0,
+                          buttonSize: 60.0,
                           icon: Icon(
                             Icons.search,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30,
+                            size: 30.0,
                           ),
                           onPressed: () {
                             print('IconButton pressed ...');
@@ -177,14 +197,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 'ID',
                                 style: FlutterFlowTheme.of(context)
@@ -197,14 +217,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '文件名称',
                                 style: FlutterFlowTheme.of(context)
@@ -217,14 +237,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '上传人',
                                 style: FlutterFlowTheme.of(context)
@@ -237,14 +257,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '上传日期',
                                 style: FlutterFlowTheme.of(context)
@@ -257,14 +277,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '是否审核',
                                 style: FlutterFlowTheme.of(context)
@@ -277,14 +297,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '审核人',
                                 style: FlutterFlowTheme.of(context)
@@ -297,14 +317,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '审核日期',
                                 style: FlutterFlowTheme.of(context)
@@ -317,14 +337,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '文件类型',
                                 style: FlutterFlowTheme.of(context)
@@ -337,14 +357,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '浏览次数',
                                 style: FlutterFlowTheme.of(context)
@@ -357,14 +377,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '状态',
                                 style: FlutterFlowTheme.of(context)
@@ -377,14 +397,14 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                             ),
                           ),
                           Container(
-                            width: 100,
-                            height: 30,
+                            width: 100.0,
+                            height: 30.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 '备注',
                                 style: FlutterFlowTheme.of(context)
@@ -409,8 +429,8 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 50,
-                              height: 50,
+                              width: 50.0,
+                              height: 50.0,
                               child: CircularProgressIndicator(
                                 color:
                                     FlutterFlowTheme.of(context).primaryColor,
@@ -422,10 +442,11 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                         return Builder(
                           builder: (context) {
                             final fileList = FileGroup.getFileListCall
-                                .list(
-                                  columnGetFileListResponse.jsonBody,
-                                )
-                                .toList();
+                                    .list(
+                                      columnGetFileListResponse.jsonBody,
+                                    )
+                                    ?.toList() ??
+                                [];
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: List.generate(fileList.length,
@@ -437,14 +458,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -460,14 +482,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -483,25 +506,47 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              getJsonField(
+                                                fileListItem,
+                                                r'''$.uploadUser''',
+                                              ).toString(),
+                                              '上传人',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 100.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
-                                                      fileListItem,
-                                                      r'''$.uploadUser''',
-                                                    ) !=
-                                                    null
-                                                ? getJsonField(
-                                                    fileListItem,
-                                                    r'''$.uploadUser''',
-                                                  ).toString()
-                                                : '上传人',
+                                              fileListItem,
+                                              r'''$.CreatedAt''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -512,39 +557,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
-                                          child: Text(
-                                            dateTimeFormat(
-                                                'relative',
-                                                DateTime.parse(getJsonField(
-                                                  fileListItem,
-                                                  r'''$.CreatedAt''',
-                                                ))),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                        child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               getJsonField(
@@ -563,14 +584,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -586,14 +608,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -609,14 +632,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -632,14 +656,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               getJsonField(
@@ -658,14 +683,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,
@@ -681,14 +707,15 @@ class _DocumentWidgetState extends State<DocumentWidget> {
                                         ),
                                       ),
                                       Container(
-                                        width: 100,
-                                        height: 30,
+                                        width: 100.0,
+                                        height: 30.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Align(
-                                          alignment: AlignmentDirectional(0, 0),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             getJsonField(
                                               fileListItem,

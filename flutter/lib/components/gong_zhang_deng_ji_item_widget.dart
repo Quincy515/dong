@@ -1056,12 +1056,42 @@ class _GongZhangDengJiItemWidgetState extends State<GongZhangDengJiItemWidget> {
 
                         setState(() {});
                       },
+                      //todo:
+                      /* 
+                      {
+  "ID": 1,
+  "CreatedAt": "2023-02-27T20:49:16.172+08:00",
+  "UpdatedAt": "2023-03-01T18:04:47.543+08:00",
+  "beiZhu": "备注",
+  "gongZhangMingCheng": "公章",
+  "group": "所属",
+  "jingShouRen": "经手人",
+  "jingShouShiJian": "2023-02-27T20:48:53.033+08:00",
+  "shenQingRen": "申请人",
+  "shenQingShiJian": "2023-02-27T20:48:53.033+08:00",
+  "shiXiang": "事项",
+  "shuLiang": 10,
+  "xiangQing": "详情"
+}
+                      */
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.updateRes = await BanGongShiGroup
                               .updateGongZhangDengJiCall
                               .call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "gongZhangMingCheng": "${_model.gongZhangMingChengController.text}",
+  "group": "${_model.groupController.text}",
+  "jingShouRen": "${_model.jingShouRenController.text}",
+  "shenQingRen": "${_model.shenQingRenController.text}",
+  "shiXiang": "${_model.shiXiangController.text}",
+  "shuLiang": ${_model.shuLiangController.text},
+  "xiangQing": "${_model.xiangQingController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

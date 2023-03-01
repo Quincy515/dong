@@ -74,133 +74,133 @@ class _GongSiZhangHaoMiMaWidgetState extends State<GongSiZhangHaoMiMaWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 8.0, 8.0),
-                          child: Row(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 8.0, 8.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '公司账号密码',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Switch(
+                                value: _model.switchValue ??= false,
+                                onChanged: (newValue) async {
+                                  setState(() => _model.switchValue = newValue);
+                                },
+                              ),
                               Text(
-                                '公司账号密码',
+                                '新增',
                                 style: FlutterFlowTheme.of(context)
-                                    .title1
+                                    .bodyText1
                                     .override(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Switch(
-                              value: _model.switchValue ??= false,
-                              onChanged: (newValue) async {
-                                setState(() => _model.switchValue = newValue);
-                              },
-                            ),
-                            Text(
-                              '新增',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  _model.getRes = await BanGongShiGroup
-                                      .getGongSiZhangHaoMiMaListCall
-                                      .call(
-                                    page: 1,
-                                    pageSize: 10,
-                                  );
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 0.0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    _model.getRes = await BanGongShiGroup
+                                        .getGongSiZhangHaoMiMaListCall
+                                        .call(
+                                      page: 1,
+                                      pageSize: 10,
+                                    );
 
-                                  setState(() {});
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.refresh,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        '刷新',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                    setState(() {});
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.refresh,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          '刷新',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        if (_model.switchValue ?? true)
-                          wrapWithModel(
-                            model: _model.gongSiZhangHaoMiMaItemModel1,
-                            updateCallback: () => setState(() {}),
-                            child: GongSiZhangHaoMiMaItemWidget(
-                              item: null,
-                            ),
+                            ],
                           ),
-                        if (!_model.switchValue!)
-                          FutureBuilder<ApiCallResponse>(
-                            future: BanGongShiGroup
-                                .getGongSiZhangHaoMiMaListCall
-                                .call(
-                              page: 1,
-                              pageSize: 10,
+                          if (_model.switchValue ?? true)
+                            wrapWithModel(
+                              model: _model.gongSiZhangHaoMiMaItemModel1,
+                              updateCallback: () => setState(() {}),
+                              child: GongSiZhangHaoMiMaItemWidget(
+                                item: null,
+                              ),
                             ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                          if (!_model.switchValue!)
+                            FutureBuilder<ApiCallResponse>(
+                              future: BanGongShiGroup
+                                  .getGongSiZhangHaoMiMaListCall
+                                  .call(
+                                page: 1,
+                                pageSize: 10,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }
-                              final columnGetGongSiZhangHaoMiMaListResponse =
-                                  snapshot.data!;
-                              return Builder(
-                                builder: (context) {
-                                  final list = BanGongShiGroup
-                                          .getGongSiZhangHaoMiMaListCall
-                                          .list(
-                                            columnGetGongSiZhangHaoMiMaListResponse
-                                                .jsonBody,
-                                          )
-                                          ?.toList() ??
-                                      [];
-                                  return SingleChildScrollView(
-                                    child: Column(
+                                  );
+                                }
+                                final columnGetGongSiZhangHaoMiMaListResponse =
+                                    snapshot.data!;
+                                return Builder(
+                                  builder: (context) {
+                                    final list = BanGongShiGroup
+                                            .getGongSiZhangHaoMiMaListCall
+                                            .list(
+                                              columnGetGongSiZhangHaoMiMaListResponse
+                                                  .jsonBody,
+                                            )
+                                            ?.toList() ??
+                                        [];
+                                    return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(list.length,
                                           (listIndex) {
@@ -211,18 +211,18 @@ class _GongSiZhangHaoMiMaWidgetState extends State<GongSiZhangHaoMiMaWidget> {
                                           item: listItem,
                                         );
                                       }),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          wrapWithModel(
+                            model: _model.pageSearchAndNextModel,
+                            updateCallback: () => setState(() {}),
+                            child: PageSearchAndNextWidget(),
                           ),
-                        wrapWithModel(
-                          model: _model.pageSearchAndNextModel,
-                          updateCallback: () => setState(() {}),
-                          child: PageSearchAndNextWidget(),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

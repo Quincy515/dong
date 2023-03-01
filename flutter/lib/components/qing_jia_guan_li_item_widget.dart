@@ -1348,12 +1348,47 @@ class _QingJiaGuanLiItemWidgetState extends State<QingJiaGuanLiItemWidget> {
 
                         setState(() {});
                       },
+                      //todo:
+                      /**
+{
+  "ID": 1,
+  "CreatedAt": "2023-02-27T20:48:10.522+08:00",
+  "UpdatedAt": "2023-03-01T16:24:50.133+08:00",
+  "beiZhu": "备注",
+  "group": "所属",
+  "jieShuRiQi": "2023-02-27T20:47:37.584+08:00",
+  "jinDu": "进度",
+  "kaiShiRiQi": "2023-02-27T20:47:37.584+08:00",
+  "leiXing": 1,
+  "shenHeRen": "审核人",
+  "shenHeShiJian": "2023-02-27T20:47:37.584+08:00",
+  "shenHeXiangQing": "审核详情",
+  "shenHeZhuangTai": "审核状态",
+  "shiYou": "事由",
+  "tianShu": 10,
+  "xingMing": "姓名"
+}
+                       */
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.updateRes = await BanGongShiGroup
                               .updateQingJiaGuanLiCall
                               .call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "group": "${_model.groupController.text}",
+  "jinDu": "${_model.jinDuController.text}",
+  "leiXing: ${_model.leiXingController.text},
+  "shenHeRen": "${_model.shenHeRenController.text}",
+  "shenHeXiangQing": "${_model.shenHeXiangQingController.text}",
+  "shenHeZhuangTai": "${_model.shenHeZhuangTaiController.text}",
+  "shiYou": "${_model.shiYouController.text}",
+  "tianShu": ${_model.tianShuController.text},
+  "xingMing": ${_model.xingMingController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

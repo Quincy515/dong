@@ -2190,7 +2190,32 @@ class _YuanGongHuaMingCeItemWidgetState
                           _model.updateRes = await BanGongShiGroup
                               .updateYuanGongHuaMingCeCall
                               .call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "buMen": "${_model.buMenController.text}",
+  "chuShengRiQi": "${_model.chuShengRiQiController.text}",
+  "congShiGangWeiHuoGongZhong": "${_model.congShiGangWeiHuoGongZhongController.text}",
+  "geRenSheBaoMiMa": "${_model.geRenSheBaoMiMaController.text}",
+  "geRenSheBaoZhangHao": "${_model.geRenSheBaoZhangHaoController.text}",
+  "group": "${_model.groupController.text}",
+  "heTongYueDingGongZi": "${_model.heTongYueDingGongZiController.text}",
+  "huKouSuoZaiDi": "${_model.huKouSuoZaiDiController.text}",
+  "laoDongHeTongJieZhiRiQi": "${_model.laoDongHeTongJieZhiRiQiController.text}",
+  "laoDongHeTongKaiShiRiQi": "${_model.laoDongHeTongKaiShiRiQiController.text}",
+  "liZhiRiQi": "${_model.liZhiRiQiController.text}",
+  "lianXiDianHua": "${_model.lianXiDianHuaController.text}",
+  "menJinBianHao": "${_model.menJinBianHaoController.text}",
+  "nianLing": "${_model.nianLingController.text}",
+  "ruZhiShiJian": "${_model.ruZhiShiJianController.text}",
+  "shenFenZhengHaoMa": "${_model.shenFenZhengHaoMaController.text}",
+  "wenHuaChengDu": "${_model.wenHuaChengDuController.text}",
+  "xianJuZhuDiZhi": "${_model.xianJuZhuDiZhiController.text}",
+  "xingBie": "${_model.xingBieController.text}",
+  "xingMing": "${_model.xingMingController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

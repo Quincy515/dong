@@ -198,20 +198,17 @@ class _HuiYuanGuanLiWidgetState extends State<HuiYuanGuanLiWidget> {
                                                 )
                                                 ?.toList() ??
                                             [];
-                                    return SingleChildScrollView(
-                                      primary: false,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: List.generate(list.length,
-                                            (listIndex) {
-                                          final listItem = list[listIndex];
-                                          return HuiYuanGuanLiItemWidget(
-                                            key: Key(
-                                                'Key4dm_${listIndex}_of_${list.length}'),
-                                            item: listItem,
-                                          );
-                                        }),
-                                      ),
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: List.generate(list.length,
+                                          (listIndex) {
+                                        final listItem = list[listIndex];
+                                        return HuiYuanGuanLiItemWidget(
+                                          key: Key(
+                                              'Key4dm_${listIndex}_of_${list.length}'),
+                                          item: listItem,
+                                        );
+                                      }),
                                     );
                                   },
                                 );

@@ -1058,12 +1058,41 @@ class _GongSiZhangHaoMiMaItemWidgetState
 
                         setState(() {});
                       },
+                      // todo:
+                      /*
+                      {
+  "ID": 1,
+  "CreatedAt": "2023-02-27T20:48:50.889+08:00",
+  "UpdatedAt": "2023-03-01T17:54:33.962+08:00",
+  "beiZhu": "备注",
+  "group": "所属",
+  "jieShuYouXiaoQi": "2023-02-27T20:48:33.794+08:00",
+  "kaiShiYouXiaoQi": "2023-02-27T20:48:33.794+08:00",
+  "lianJie": "链接",
+  "miMa": "密码",
+  "nianFei": "年费",
+  "xiTongMingCheng": "系统",
+  "yongHuMing": "用户名",
+  "yongTu": "用途"
+} */
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.updateRes = await BanGongShiGroup
                               .updateGongSiZhangHaoMiMaCall
                               .call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "group": "${_model.groupController.text}",
+  "lianJie": "${_model.lianJieController.text}",
+  "miMa": "${_model.miMaController.text}",
+  "nianFei": "${_model.nianFeiController.text}",
+  "xiTongMingCheng": "${_model.xiTongMingChengController.text}",
+  "yongHuMing": "${_model.yongHuMingController.text}",
+  "yongTu": "${_model.yongTuController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

@@ -759,11 +759,30 @@ class _MeiRiKaoQinItemWidgetState extends State<MeiRiKaoQinItemWidget> {
 
                         setState(() {});
                       },
+                      // todo:
+                      /* {
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "备注",
+  "chuQin": true,
+  "group": "所属",
+  "riQi": "2023-02-27T20:47:01.351+08:00",
+  "xiangQing": "详情",
+  "xingMing": "姓名",
+  "xiuJiaQingJiaChuCha": true
+}*/
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.updateRes =
                               await BanGongShiGroup.updateMeiRiKaoQinCall.call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "group": "${_model.groupController.text}",
+  "xiangQing": "${_model.xiangQingController.text}",
+  "xingMing": "${_model.xingMingController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

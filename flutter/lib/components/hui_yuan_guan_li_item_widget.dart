@@ -1051,12 +1051,41 @@ class _HuiYuanGuanLiItemWidgetState extends State<HuiYuanGuanLiItemWidget> {
 
                         setState(() {});
                       },
+                      // todo:
+                      /*
+                      {
+  "ID": 1,
+  "CreatedAt": "2023-02-27T20:48:32.343+08:00",
+  "UpdatedAt": "2023-03-01T16:35:48.921+08:00",
+  "beiZhu": "备注",
+  "group": "所属",
+  "huiFei": "会费",
+  "huiYuanMingCheng": "会员",
+  "jiBie": "级别",
+  "jiaoFeiShiJian": "2023-02-27T20:48:11.799+08:00",
+  "jieShuYouXiaoQi": "2023-02-27T20:48:11.799+08:00",
+  "kaiShiYouXiaoQi": "2023-02-27T20:48:11.799+08:00",
+  "ruHuiLianXi": "联系",
+  "wangZhi": "网址"
+}
+                       */
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.updateRes = await BanGongShiGroup
                               .updateHuiYuanGuanLiCall
                               .call(
-                            itemJson: widget.item,
+                            itemJson: jsonDecode('''
+{
+  "ID": ${getJsonField(widget.item, r'''$.ID''')},
+  "beiZhu": "${_model.beiZhuController.text}",
+  "group": "${_model.groupController.text}",
+  "huiFei": "${_model.huiFeiController.text}",
+  "huiYuanMingCheng": "${_model.huiYuanMingChengController.text}",
+  "jiBie": "${_model.jiBieController.text}",
+  "ruHuiLianXi": "${_model.ruHuiLianXiController.text}",
+  "wangZhi": "${_model.wangZhiController.text}"
+}
+'''),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

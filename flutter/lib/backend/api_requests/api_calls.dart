@@ -549,6 +549,795 @@ ${item}''';
 
 /// End jingYingBu Group Code
 
+/// Start banGongShi Group Code
+
+class BanGongShiGroup {
+  static String baseUrl = 'http://119.45.234.161:8888';
+  static Map<String, String> headers = {
+    'x-token':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiOWQ0ZTM2ZjMtN2I5OS00MDcxLWFjN2YtZDQxZmJhMDc0OWQ1IiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Ik1yLuWlh-a3vCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwMDAwMDAwMDAwLCJleHAiOjE2NzgyNTQzNjYsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY3NzQ5OTI3Nn0.pC6hjSydmUBBdmQR2Vkggqw5n1AEiu2L8LmQ8dvwTWE',
+  };
+  static GetYuanGongHuaMingCeListCall getYuanGongHuaMingCeListCall =
+      GetYuanGongHuaMingCeListCall();
+  static DeleteYuanGongHuaMingCeCall deleteYuanGongHuaMingCeCall =
+      DeleteYuanGongHuaMingCeCall();
+  static UpdateYuanGongHuaMingCeCall updateYuanGongHuaMingCeCall =
+      UpdateYuanGongHuaMingCeCall();
+  static GetMeiRiKaoQinListCall getMeiRiKaoQinListCall =
+      GetMeiRiKaoQinListCall();
+  static DeleteMeiRiKaoQinCall deleteMeiRiKaoQinCall = DeleteMeiRiKaoQinCall();
+  static UpdateMeiRiKaoQinCall updateMeiRiKaoQinCall = UpdateMeiRiKaoQinCall();
+  static GetKaoQinTongJiListCall getKaoQinTongJiListCall =
+      GetKaoQinTongJiListCall();
+  static DeleteKaoQinTongJiCall deleteKaoQinTongJiCall =
+      DeleteKaoQinTongJiCall();
+  static UpdateKaoQinTongJiCall updateKaoQinTongJiCall =
+      UpdateKaoQinTongJiCall();
+  static GetQingJiaGuanLiListCall getQingJiaGuanLiListCall =
+      GetQingJiaGuanLiListCall();
+  static DeleteQingJiaGuanLiCall deleteQingJiaGuanLiCall =
+      DeleteQingJiaGuanLiCall();
+  static UpdateQingJiaGuanLiCall updateQingJiaGuanLiCall =
+      UpdateQingJiaGuanLiCall();
+  static GetHuiYuanGuanLiListCall getHuiYuanGuanLiListCall =
+      GetHuiYuanGuanLiListCall();
+  static DeleteHuiYuanGuanLiCall deleteHuiYuanGuanLiCall =
+      DeleteHuiYuanGuanLiCall();
+  static UpdateHuiYuanGuanLiCall updateHuiYuanGuanLiCall =
+      UpdateHuiYuanGuanLiCall();
+  static GetGongSiZhangHaoMiMaListCall getGongSiZhangHaoMiMaListCall =
+      GetGongSiZhangHaoMiMaListCall();
+  static DeleteGongSiZhangHaoMiMaCall deleteGongSiZhangHaoMiMaCall =
+      DeleteGongSiZhangHaoMiMaCall();
+  static UpdateGongSiZhangHaoMiMaCall updateGongSiZhangHaoMiMaCall =
+      UpdateGongSiZhangHaoMiMaCall();
+  static GetGongZhangDengJiListCall getGongZhangDengJiListCall =
+      GetGongZhangDengJiListCall();
+  static DeleteGongZhangDengJiCall deleteGongZhangDengJiCall =
+      DeleteGongZhangDengJiCall();
+  static UpdateGongZhangDengJiCall updateGongZhangDengJiCall =
+      UpdateGongZhangDengJiCall();
+}
+
+class GetYuanGongHuaMingCeListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getYuanGongHuaMingCeList',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/yuanGongHuaMingCe/getYuanGongHuaMingCeList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteYuanGongHuaMingCeCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteYuanGongHuaMingCe',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/yuanGongHuaMingCe/deleteYuanGongHuaMingCe',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateYuanGongHuaMingCeCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateYuanGongHuaMingCe',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/yuanGongHuaMingCe/updateYuanGongHuaMingCe',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetMeiRiKaoQinListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getMeiRiKaoQinList',
+      apiUrl: '${BanGongShiGroup.baseUrl}/meiRiKaoQin/getMeiRiKaoQinList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteMeiRiKaoQinCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteMeiRiKaoQin',
+      apiUrl: '${BanGongShiGroup.baseUrl}/meiRiKaoQin/deleteMeiRiKaoQin',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateMeiRiKaoQinCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateMeiRiKaoQin',
+      apiUrl: '${BanGongShiGroup.baseUrl}/meiRiKaoQin/updateMeiRiKaoQin',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetKaoQinTongJiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getKaoQinTongJiList',
+      apiUrl: '${BanGongShiGroup.baseUrl}/kaoQinTongJi/getKaoQinTongJiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteKaoQinTongJiCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteKaoQinTongJi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/kaoQinTongJi/deleteKaoQinTongJi',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateKaoQinTongJiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateKaoQinTongJi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/kaoQinTongJi/updateKaoQinTongJi',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetQingJiaGuanLiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getQingJiaGuanLiList',
+      apiUrl: '${BanGongShiGroup.baseUrl}/qingJiaGuanLi/getQingJiaGuanLiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteQingJiaGuanLiCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteQingJiaGuanLi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/qingJiaGuanLi/deleteQingJiaGuanLi',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateQingJiaGuanLiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateQingJiaGuanLi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/qingJiaGuanLi/updateQingJiaGuanLi',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetHuiYuanGuanLiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getHuiYuanGuanLiList',
+      apiUrl: '${BanGongShiGroup.baseUrl}/huiYuanGuanLi/getHuiYuanGuanLiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteHuiYuanGuanLiCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteHuiYuanGuanLi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/huiYuanGuanLi/deleteHuiYuanGuanLi',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateHuiYuanGuanLiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateHuiYuanGuanLi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/huiYuanGuanLi/updateHuiYuanGuanLi',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetGongSiZhangHaoMiMaListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getGongSiZhangHaoMiMaList',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongSiZhangHaoMiMa/getGongSiZhangHaoMiMaList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteGongSiZhangHaoMiMaCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteGongSiZhangHaoMiMa',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongSiZhangHaoMiMa/deleteGongSiZhangHaoMiMa',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateGongSiZhangHaoMiMaCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateGongSiZhangHaoMiMa',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongSiZhangHaoMiMa/updateGongSiZhangHaoMiMa',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetGongZhangDengJiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getGongZhangDengJiList',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongZhangDengJi/getGongZhangDengJiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteGongZhangDengJiCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteGongZhangDengJi',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongZhangDengJi/deleteGongZhangDengJi',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateGongZhangDengJiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateGongZhangDengJi',
+      apiUrl:
+          '${BanGongShiGroup.baseUrl}/gongZhangDengJi/updateGongZhangDengJi',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End banGongShi Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

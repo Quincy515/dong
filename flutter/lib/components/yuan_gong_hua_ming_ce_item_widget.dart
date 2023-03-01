@@ -1,18 +1,15 @@
-// ignore_for_file: unnecessary_import
-
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:styled_divider/styled_divider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'tou_biao_shu_ju_tong_ji_item_model.dart';
-export 'tou_biao_shu_ju_tong_ji_item_model.dart';
+import 'yuan_gong_hua_ming_ce_item_model.dart';
+export 'yuan_gong_hua_ming_ce_item_model.dart';
 
-class TouBiaoShuJuTongJiItemWidget extends StatefulWidget {
-  const TouBiaoShuJuTongJiItemWidget({
+class YuanGongHuaMingCeItemWidget extends StatefulWidget {
+  const YuanGongHuaMingCeItemWidget({
     Key? key,
     this.item,
   }) : super(key: key);
@@ -20,13 +17,13 @@ class TouBiaoShuJuTongJiItemWidget extends StatefulWidget {
   final dynamic item;
 
   @override
-  _TouBiaoShuJuTongJiItemWidgetState createState() =>
-      _TouBiaoShuJuTongJiItemWidgetState();
+  _YuanGongHuaMingCeItemWidgetState createState() =>
+      _YuanGongHuaMingCeItemWidgetState();
 }
 
-class _TouBiaoShuJuTongJiItemWidgetState
-    extends State<TouBiaoShuJuTongJiItemWidget> {
-  late TouBiaoShuJuTongJiItemModel _model;
+class _YuanGongHuaMingCeItemWidgetState
+    extends State<YuanGongHuaMingCeItemWidget> {
+  late YuanGongHuaMingCeItemModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -37,87 +34,107 @@ class _TouBiaoShuJuTongJiItemWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TouBiaoShuJuTongJiItemModel());
+    _model = createModel(context, () => YuanGongHuaMingCeItemModel());
 
     _model.groupController ??= TextEditingController(
         text: getJsonField(
       widget.item,
       r'''$.group''',
     ).toString().toString());
-    _model.xiangMuMingChengController ??= TextEditingController(
+    _model.buMenController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.xiangMuMingCheng''',
+      r'''$.buMen''',
     ).toString().toString());
-    _model.touBiaoDanWeiMingChengController ??= TextEditingController(
+    _model.xingMingController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.touBiaoDanWeiMingCheng''',
+      r'''$.xingMing''',
     ).toString().toString());
-    _model.ziZhiYaoQiuController ??= TextEditingController(
+    _model.xingBieController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.ziZhiYaoQiu''',
+      r'''$.xingBie''',
     ).toString().toString());
-    _model.suoShuDiQuController ??= TextEditingController(
+    _model.nianLingController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.suoShuDiQu''',
+      r'''$.nianLing''',
     ).toString().toString());
-    _model.zhaoBiaoGuiMoController ??= TextEditingController(
+    _model.huKouSuoZaiDiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.zhaoBiaoGuiMo''',
+      r'''$.huKouSuoZaiDi''',
     ).toString().toString());
-    _model.dengJiYaoQiuController ??= TextEditingController(
+    _model.ruZhiShiJianController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.dengJiYaoQiu''',
+      r'''$.ruZhiShiJian''',
     ).toString().toString());
-    _model.diYiZhongBiaoHouXuanRenController ??= TextEditingController(
+    _model.wenHuaChengDuController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diYiZhongBiaoHouXuanRen''',
+      r'''$.wenHuaChengDu''',
     ).toString().toString());
-    _model.diYiBaoJiaController ??= TextEditingController(
+    _model.laoDongHeTongKaiShiRiQiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diYiBaoJia''',
+      r'''$.laoDongHeTongKaiShiRiQi''',
     ).toString().toString());
-    _model.diYiXiaFuLuController ??= TextEditingController(
+    _model.laoDongHeTongJieZhiRiQiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diYiXiaFuLu''',
+      r'''$.laoDongHeTongJieZhiRiQi''',
     ).toString().toString());
-    _model.diErZhongBiaoHouXuanRenController ??= TextEditingController(
+    _model.shenFenZhengHaoMaController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diErZhongBiaoHouXuanRen''',
+      r'''$.shenFenZhengHaoMa''',
     ).toString().toString());
-    _model.diErBaoJiaController ??= TextEditingController(
+    _model.chuShengRiQiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diErBaoJia''',
+      r'''$.chuShengRiQi''',
     ).toString().toString());
-    _model.diErXiaFuLuController ??= TextEditingController(
+    _model.heTongYueDingGongZiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diErXiaFuLu''',
+      r'''$.heTongYueDingGongZi''',
     ).toString().toString());
-    _model.diSanZhongBiaoHouXuanRenController ??= TextEditingController(
+    _model.congShiGangWeiHuoGongZhongController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diSanZhongBiaoHouXuanRen''',
+      r'''$.congShiGangWeiHuoGongZhong''',
     ).toString().toString());
-    _model.diSanBaoJiaController ??= TextEditingController(
+    _model.lianXiDianHuaController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diSanBaoJia''',
+      r'''$.lianXiDianHua''',
     ).toString().toString());
-    _model.diSanXiaFuLuController ??= TextEditingController(
+    _model.xianJuZhuDiZhiController ??= TextEditingController(
         text: getJsonField(
       widget.item,
-      r'''$.diSanXiaFuLu''',
+      r'''$.xianJuZhuDiZhi''',
+    ).toString().toString());
+    _model.liZhiRiQiController ??= TextEditingController(
+        text: getJsonField(
+      widget.item,
+      r'''$.liZhiRiQi''',
+    ).toString().toString());
+    _model.geRenSheBaoZhangHaoController ??= TextEditingController(
+        text: getJsonField(
+      widget.item,
+      r'''$.geRenSheBaoZhangHao''',
+    ).toString().toString());
+    _model.geRenSheBaoMiMaController ??= TextEditingController(
+        text: getJsonField(
+      widget.item,
+      r'''$.geRenSheBaoMiMa''',
+    ).toString().toString());
+    _model.menJinBianHaoController ??= TextEditingController(
+        text: getJsonField(
+      widget.item,
+      r'''$.menJinBianHao''',
     ).toString().toString());
     _model.beiZhuController ??= TextEditingController(
         text: getJsonField(
@@ -257,7 +274,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '项目名称',
+                            '部门',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -278,7 +295,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.xiangMuMingChengController,
+                          controller: _model.buMenController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -331,7 +348,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
                                   ),
-                          validator: _model.xiangMuMingChengControllerValidator
+                          validator: _model.buMenControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -348,109 +365,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '投标单位名称',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                        child: Container(
-                          width: 200.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: TextFormField(
-                            controller: _model.touBiaoDanWeiMingChengController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  2.0, 2.0, 2.0, 2.0),
-                            ),
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                            validator: _model
-                                .touBiaoDanWeiMingChengControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            '开标时间',
+                            '姓名',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -464,270 +379,14 @@ class _TouBiaoShuJuTongJiItemWidgetState
                       padding:
                           EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
                       child: Container(
-                        width: 100.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            final _datePickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: getCurrentTimestamp,
-                              firstDate: DateTime(1900),
-                              lastDate: DateTime(2050),
-                            );
-
-                            if (_datePickedDate != null) {
-                              setState(() {
-                                _model.datePicked = DateTime(
-                                  _datePickedDate.year,
-                                  _datePickedDate.month,
-                                  _datePickedDate.day,
-                                );
-                              });
-                            }
-                          },
-                          text: dateTimeFormat('yMd', _model.datePicked),
-                          options: FFButtonOptions(
-                            width: 130.0,
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Colors.transparent,
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                            elevation: 0.0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            '资质要求',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
-                      child: Container(
-                        width: 100.0,
+                        width: 150.0,
                         height: 40.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.ziZhiYaoQiuController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            errorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          maxLines: null,
-                          validator: _model.ziZhiYaoQiuControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        height: 40.5,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            '所属地区',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
-                      child: Container(
-                        width: 100.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: TextFormField(
-                          controller: _model.suoShuDiQuController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            errorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          validator: _model.suoShuDiQuControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            '招标规模',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        width: 200.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: TextFormField(
-                          controller: _model.zhaoBiaoGuiMoController,
+                          controller: _model.xingMingController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -780,7 +439,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
                                   ),
-                          validator: _model.zhaoBiaoGuiMoControllerValidator
+                          validator: _model.xingMingControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -797,7 +456,98 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '等级要求',
+                            '性别',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        width: 150.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller: _model.xingBieController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                2.0, 2.0, 2.0, 2.0),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          validator: _model.xingBieControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '年龄',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -812,14 +562,14 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
                         child: Container(
-                          width: 200.0,
+                          width: 150.0,
                           height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
                           child: TextFormField(
-                            controller: _model.dengJiYaoQiuController,
+                            controller: _model.nianLingController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -872,7 +622,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
                                     ),
-                            validator: _model.dengJiYaoQiuControllerValidator
+                            validator: _model.nianLingControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -902,7 +652,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第一中标候选人',
+                            '户口所在地',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -923,7 +673,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.diYiZhongBiaoHouXuanRenController,
+                          controller: _model.huKouSuoZaiDiController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -974,8 +724,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
                                   ),
-                          validator: _model
-                              .diYiZhongBiaoHouXuanRenControllerValidator
+                          validator: _model.huKouSuoZaiDiControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -992,7 +741,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第一报价',
+                            '入职时间',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1013,7 +762,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.diYiBaoJiaController,
+                          controller: _model.ruZhiShiJianController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1065,7 +814,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontWeight: FontWeight.normal,
                                   ),
                           maxLines: null,
-                          validator: _model.diYiBaoJiaControllerValidator
+                          validator: _model.ruZhiShiJianControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -1082,7 +831,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第一下浮率',
+                            '文化程度',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1104,7 +853,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                 .secondaryBackground,
                           ),
                           child: TextFormField(
-                            controller: _model.diYiXiaFuLuController,
+                            controller: _model.wenHuaChengDuController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1155,7 +904,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
                                     ),
-                            validator: _model.diYiXiaFuLuControllerValidator
+                            validator: _model.wenHuaChengDuControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -1181,7 +930,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第二中标候选人',
+                            '劳动合同开始日期',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1195,14 +944,14 @@ class _TouBiaoShuJuTongJiItemWidgetState
                       padding:
                           EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
                       child: Container(
-                        width: 300.0,
+                        width: 320.0,
                         height: 40.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.diErZhongBiaoHouXuanRenController,
+                          controller: _model.laoDongHeTongKaiShiRiQiController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1254,7 +1003,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontWeight: FontWeight.normal,
                                   ),
                           validator: _model
-                              .diErZhongBiaoHouXuanRenControllerValidator
+                              .laoDongHeTongKaiShiRiQiControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -1271,97 +1020,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第二报价',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
-                      child: Container(
-                        width: 300.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: TextFormField(
-                          controller: _model.diErBaoJiaController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            errorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                          maxLines: null,
-                          validator: _model.diErBaoJiaControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            '第二下浮率',
+                            '劳动合同截止日期',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1376,14 +1035,15 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
                         child: Container(
-                          width: 100.0,
+                          width: 220.0,
                           height: 40.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
                           child: TextFormField(
-                            controller: _model.diErXiaFuLuController,
+                            controller:
+                                _model.laoDongHeTongJieZhiRiQiController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1434,7 +1094,9 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
                                     ),
-                            validator: _model.diErXiaFuLuControllerValidator
+                            maxLines: null,
+                            validator: _model
+                                .laoDongHeTongJieZhiRiQiControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -1460,7 +1122,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第三中标候选人',
+                            '身份证号码',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1481,7 +1143,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.diSanZhongBiaoHouXuanRenController,
+                          controller: _model.shenFenZhengHaoMaController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1532,8 +1194,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.normal,
                                   ),
-                          validator: _model
-                              .diSanZhongBiaoHouXuanRenControllerValidator
+                          validator: _model.shenFenZhengHaoMaControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -1550,7 +1211,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第三报价',
+                            '出生日期',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1571,7 +1232,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: TextFormField(
-                          controller: _model.diSanBaoJiaController,
+                          controller: _model.chuShengRiQiController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1623,7 +1284,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                     fontWeight: FontWeight.normal,
                                   ),
                           maxLines: null,
-                          validator: _model.diSanBaoJiaControllerValidator
+                          validator: _model.chuShengRiQiControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -1640,7 +1301,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            '第三下浮率',
+                            '合同约定工资',
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
@@ -1662,7 +1323,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                 .secondaryBackground,
                           ),
                           child: TextFormField(
-                            controller: _model.diSanXiaFuLuController,
+                            controller: _model.heTongYueDingGongZiController,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -1713,7 +1374,656 @@ class _TouBiaoShuJuTongJiItemWidgetState
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.normal,
                                     ),
-                            validator: _model.diSanXiaFuLuControllerValidator
+                            validator: _model
+                                .heTongYueDingGongZiControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '从事岗位或工种',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        width: 150.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller:
+                              _model.congShiGangWeiHuoGongZhongController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          validator: _model
+                              .congShiGangWeiHuoGongZhongControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '联系电话',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                      child: Container(
+                        width: 220.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller: _model.lianXiDianHuaController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          maxLines: null,
+                          validator: _model.lianXiDianHuaControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '现居住地址',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                        child: Container(
+                          width: 100.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: TextFormField(
+                            controller: _model.xianJuZhuDiZhiController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                            validator: _model.xianJuZhuDiZhiControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '离职日期',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        width: 150.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller: _model.liZhiRiQiController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          validator: _model.liZhiRiQiControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '个人社保账号',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                      child: Container(
+                        width: 250.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller: _model.geRenSheBaoZhangHaoController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          maxLines: null,
+                          validator: _model
+                              .geRenSheBaoZhangHaoControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '个人社保密码',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                      child: Container(
+                        width: 200.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: TextFormField(
+                          controller: _model.geRenSheBaoMiMaController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          validator: _model.geRenSheBaoMiMaControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 2.0, 0.0),
+                      child: Container(
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            '门禁编号',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                        child: Container(
+                          width: 100.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: TextFormField(
+                            controller: _model.menJinBianHaoController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                            validator: _model.menJinBianHaoControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -1844,8 +2154,8 @@ class _TouBiaoShuJuTongJiItemWidgetState
                             ) ??
                             false;
                         if (confirmDialogResponse) {
-                          _model.deleteRes = await JingYingBuGroup
-                              .deleteTouBiaoShuJuTongJiCall
+                          _model.deleteRes = await BanGongShiGroup
+                              .deleteYuanGongHuaMingCeCall
                               .call(
                             id: getJsonField(
                               widget.item,
@@ -1855,7 +2165,7 @@ class _TouBiaoShuJuTongJiItemWidgetState
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                JingYingBuGroup.deleteTouBiaoShuJuTongJiCall
+                                BanGongShiGroup.deleteYuanGongHuaMingCeCall
                                     .msg(
                                       (_model.deleteRes?.jsonBody ?? ''),
                                     )
@@ -1877,37 +2187,15 @@ class _TouBiaoShuJuTongJiItemWidgetState
                       },
                       child: FFButtonWidget(
                         onPressed: () async {
-                          _model.updateRes = await JingYingBuGroup
-                              .updateTouBiaoShuJuTongJiCall
+                          _model.updateRes = await BanGongShiGroup
+                              .updateYuanGongHuaMingCeCall
                               .call(
-                            itemJson: jsonDecode('''
-{
-  "ID": ${getJsonField(widget.item, r'''$.ID''')},
-  "beiZhu": "${_model.beiZhuController.text}",
-  "dengJiYaoQiu": ${_model.dengJiYaoQiuController.text},
-  "diErBaoJia": "${_model.diErBaoJiaController.text}",
-  "diErXiaFuLu": "${_model.diErXiaFuLuController.text}",
-  "diErZhongBiaoHouXuanRen": "${_model.diErZhongBiaoHouXuanRenController.text}",
-  "diSanBaoJia": "${_model.diSanBaoJiaController.text}",
-  "diSanXiaFuLu": "${_model.diSanXiaFuLuController.text}",
-  "diSanZhongBiaoHouXuanRen": "${_model.diSanZhongBiaoHouXuanRenController.text}",
-  "diYiBaoJia": "${_model.diYiBaoJiaController.text}",
-  "diYiXiaFuLu": "${_model.diYiXiaFuLuController.text}",
-  "diYiZhongBiaoHouXuanRen": "${_model.diYiZhongBiaoHouXuanRenController.text}",
-  "group": "${_model.groupController.text}",
-
-  "suoShuDiQu": ${_model.suoShuDiQuController.text},
-  "touBiaoDanWeiMingCheng": "${_model.touBiaoDanWeiMingChengController.text}",
-  "xiangMuMingCheng": "${_model.xiangMuMingChengController.text}",
-  "zhaoBiaoGuiMo": "${_model.zhaoBiaoGuiMoController.text}",
-  "ziZhiYaoQiu": ${_model.ziZhiYaoQiuController.text}
-}
-'''),
+                            itemJson: widget.item,
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                JingYingBuGroup.updateTouBiaoShuJuTongJiCall
+                                BanGongShiGroup.updateYuanGongHuaMingCeCall
                                     .msg(
                                       (_model.updateRes?.jsonBody ?? ''),
                                     )

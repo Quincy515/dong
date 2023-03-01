@@ -1,12 +1,11 @@
 // ignore_for_file: unused_import
 
+import '/backend/api_requests/api_calls.dart';
 import '/components/page_search_and_next_widget.dart';
+import '/components/qing_jia_guan_li_item_widget.dart';
 import '/components/web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:styled_divider/styled_divider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,42 +13,14 @@ import 'package:provider/provider.dart';
 class QingJiaGuanLiModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  final formKey = GlobalKey<FormState>();
   // Model for webNav component.
   late WebNavModel webNavModel;
-  // State field(s) for group widget.
-  TextEditingController? groupController;
-  String? Function(BuildContext, String?)? groupControllerValidator;
-  // State field(s) for xing_ming widget.
-  TextEditingController? xingMingController;
-  String? Function(BuildContext, String?)? xingMingControllerValidator;
-  // State field(s) for lei_xing widget.
-  TextEditingController? leiXingController;
-  String? Function(BuildContext, String?)? leiXingControllerValidator;
-  // State field(s) for tian_shu widget.
-  TextEditingController? tianShuController;
-  String? Function(BuildContext, String?)? tianShuControllerValidator;
-  // State field(s) for shi_you widget.
-  TextEditingController? shiYouController;
-  String? Function(BuildContext, String?)? shiYouControllerValidator;
-  // State field(s) for jin_du widget.
-  TextEditingController? jinDuController;
-  String? Function(BuildContext, String?)? jinDuControllerValidator;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
-  // State field(s) for shen_he_ren widget.
-  TextEditingController? shenHeRenController;
-  String? Function(BuildContext, String?)? shenHeRenControllerValidator;
-  // State field(s) for shen_he_zhuang_tai widget.
-  TextEditingController? shenHeZhuangTaiController;
-  String? Function(BuildContext, String?)? shenHeZhuangTaiControllerValidator;
-  DateTime? datePicked3;
-  // State field(s) for shen_he_xiang_qing widget.
-  TextEditingController? shenHeXiangQingController;
-  String? Function(BuildContext, String?)? shenHeXiangQingControllerValidator;
-  // State field(s) for bei_zhu widget.
-  TextEditingController? beiZhuController;
-  String? Function(BuildContext, String?)? beiZhuControllerValidator;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // Stores action output result for [Backend Call - API (getQingJiaGuanLiList)] action in Row widget.
+  ApiCallResponse? getRes;
+  // Model for qingJiaGuanLiItem component.
+  late QingJiaGuanLiItemModel qingJiaGuanLiItemModel1;
   // Model for pageSearchAndNext component.
   late PageSearchAndNextModel pageSearchAndNextModel;
 
@@ -57,22 +28,15 @@ class QingJiaGuanLiModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     webNavModel = createModel(context, () => WebNavModel());
+    qingJiaGuanLiItemModel1 =
+        createModel(context, () => QingJiaGuanLiItemModel());
     pageSearchAndNextModel =
         createModel(context, () => PageSearchAndNextModel());
   }
 
   void dispose() {
     webNavModel.dispose();
-    groupController?.dispose();
-    xingMingController?.dispose();
-    leiXingController?.dispose();
-    tianShuController?.dispose();
-    shiYouController?.dispose();
-    jinDuController?.dispose();
-    shenHeRenController?.dispose();
-    shenHeZhuangTaiController?.dispose();
-    shenHeXiangQingController?.dispose();
-    beiZhuController?.dispose();
+    qingJiaGuanLiItemModel1.dispose();
     pageSearchAndNextModel.dispose();
   }
 

@@ -1,12 +1,11 @@
 // ignore_for_file: unused_import
 
+import '/backend/api_requests/api_calls.dart';
+import '/components/gong_zhang_deng_ji_item_widget.dart';
 import '/components/page_search_and_next_widget.dart';
 import '/components/web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:styled_divider/styled_divider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,36 +13,14 @@ import 'package:provider/provider.dart';
 class GongZhangDengJiModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  final formKey = GlobalKey<FormState>();
   // Model for webNav component.
   late WebNavModel webNavModel;
-  // State field(s) for group widget.
-  TextEditingController? groupController;
-  String? Function(BuildContext, String?)? groupControllerValidator;
-  // State field(s) for gong_zhang_ming_cheng widget.
-  TextEditingController? gongZhangMingChengController;
-  String? Function(BuildContext, String?)?
-      gongZhangMingChengControllerValidator;
-  // State field(s) for shu_liang widget.
-  TextEditingController? shuLiangController;
-  String? Function(BuildContext, String?)? shuLiangControllerValidator;
-  // State field(s) for shi_xiang widget.
-  TextEditingController? shiXiangController;
-  String? Function(BuildContext, String?)? shiXiangControllerValidator;
-  // State field(s) for shen_qing_ren widget.
-  TextEditingController? shenQingRenController;
-  String? Function(BuildContext, String?)? shenQingRenControllerValidator;
-  DateTime? datePicked1;
-  // State field(s) for jing_shou_ren widget.
-  TextEditingController? jingShouRenController;
-  String? Function(BuildContext, String?)? jingShouRenControllerValidator;
-  DateTime? datePicked2;
-  // State field(s) for bei_zhu widget.
-  TextEditingController? beiZhuController;
-  String? Function(BuildContext, String?)? beiZhuControllerValidator;
-  // State field(s) for xiang_qing widget.
-  TextEditingController? xiangQingController;
-  String? Function(BuildContext, String?)? xiangQingControllerValidator;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // Stores action output result for [Backend Call - API (getGongZhangDengJiList)] action in Row widget.
+  ApiCallResponse? getRes;
+  // Model for gongZhangDengJiItem component.
+  late GongZhangDengJiItemModel gongZhangDengJiItemModel1;
   // Model for pageSearchAndNext component.
   late PageSearchAndNextModel pageSearchAndNextModel;
 
@@ -51,20 +28,15 @@ class GongZhangDengJiModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     webNavModel = createModel(context, () => WebNavModel());
+    gongZhangDengJiItemModel1 =
+        createModel(context, () => GongZhangDengJiItemModel());
     pageSearchAndNextModel =
         createModel(context, () => PageSearchAndNextModel());
   }
 
   void dispose() {
     webNavModel.dispose();
-    groupController?.dispose();
-    gongZhangMingChengController?.dispose();
-    shuLiangController?.dispose();
-    shiXiangController?.dispose();
-    shenQingRenController?.dispose();
-    jingShouRenController?.dispose();
-    beiZhuController?.dispose();
-    xiangQingController?.dispose();
+    gongZhangDengJiItemModel1.dispose();
     pageSearchAndNextModel.dispose();
   }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -98,5 +100,4 @@ class TouBiaoShuJuTongJiItemModel extends FlutterFlowModel {
   }
 
   /// Additional helper methods are added here.
-
 }

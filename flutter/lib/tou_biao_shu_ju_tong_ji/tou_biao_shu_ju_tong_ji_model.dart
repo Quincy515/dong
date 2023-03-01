@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import '/backend/api_requests/api_calls.dart';
 import '/components/page_search_and_next_widget.dart';
 import '/components/tou_biao_shu_ju_tong_ji_item_widget.dart';
@@ -39,5 +41,4 @@ class TouBiaoShuJuTongJiModel extends FlutterFlowModel {
   }
 
   /// Additional helper methods are added here.
-
 }

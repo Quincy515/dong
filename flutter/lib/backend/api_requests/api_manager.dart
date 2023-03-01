@@ -270,16 +270,16 @@ class ApiManager {
     ApiCallResponse result;
     switch (callType) {
       case ApiCallType.GET:
+        result = await urlRequest(
+          callType,
+          apiUrl,
+          headers,
+          params,
+          returnBody,
+          decodeUtf8,
+        );
+        break;
       case ApiCallType.DELETE:
-      // result = await urlRequest(
-      //   callType,
-      //   apiUrl,
-      //   headers,
-      //   params,
-      //   returnBody,
-      //   decodeUtf8,
-      // );
-      // break;
       case ApiCallType.POST:
       case ApiCallType.PUT:
       case ApiCallType.PATCH:

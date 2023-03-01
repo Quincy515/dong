@@ -118,56 +118,57 @@ class _XiangMuDengJiBiaoWidgetState extends State<XiangMuDengJiBiaoWidget> {
                               ),
                             ],
                           ),
-                          if (!_model.switchValue!)
-                            FutureBuilder<ApiCallResponse>(
-                              future: JingYingBuGroup
-                                  .getXiangMuDengJiBiaoListCall
-                                  .call(
-                                page: 1,
-                                pageSize: 10,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final columnGetXiangMuDengJiBiaoListResponse =
-                                    snapshot.data!;
-                                return Builder(
-                                  builder: (context) {
-                                    final list = JingYingBuGroup
-                                            .getXiangMuDengJiBiaoListCall
-                                            .list(
-                                              columnGetXiangMuDengJiBiaoListResponse
-                                                  .jsonBody,
-                                            )
-                                            ?.toList() ??
-                                        [];
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(list.length,
-                                          (listIndex) {
-                                        final listItem = list[listIndex];
-                                        return XiangMuDengJiItemWidget(
-                                          key: Key(
-                                              'Key3qa_${listIndex}_of_${list.length}'),
-                                          item: listItem,
+                          _model.switchValue!
+                              ? XiangMuDengJiItemWidget(
+                                  key: Key('new'),
+                                  item: _model,
+                                )
+                              : FutureBuilder<ApiCallResponse>(
+                                  future: JingYingBuGroup
+                                      .getXiangMuDengJiBiaoListCall
+                                      .call(
+                                    page: 1,
+                                    pageSize: 10,
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 100.0,
+                                          height: 50.0,
+                                          child: Text('暂无数据'),
+                                        ),
+                                      );
+                                    }
+                                    final columnGetXiangMuDengJiBiaoListResponse =
+                                        snapshot.data!;
+                                    return Builder(
+                                      builder: (context) {
+                                        final list = JingYingBuGroup
+                                                .getXiangMuDengJiBiaoListCall
+                                                .list(
+                                                  columnGetXiangMuDengJiBiaoListResponse
+                                                      .jsonBody,
+                                                )
+                                                ?.toList() ??
+                                            [];
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(list.length,
+                                              (listIndex) {
+                                            final listItem = list[listIndex];
+                                            return XiangMuDengJiItemWidget(
+                                              key: Key(
+                                                  'Key3qa_${listIndex}_of_${list.length}'),
+                                              item: listItem,
+                                            );
+                                          }),
                                         );
-                                      }),
+                                      },
                                     );
                                   },
-                                );
-                              },
-                            ),
+                                ),
                           wrapWithModel(
                             model: _model.pageSearchAndNextModel,
                             updateCallback: () => setState(() {}),

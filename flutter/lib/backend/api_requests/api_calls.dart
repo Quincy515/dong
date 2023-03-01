@@ -378,7 +378,7 @@ class DeleteXiangMuDengJiBiaoCall {
   Future<ApiCallResponse> call({
     int? id = 0,
   }) {
-    final body = "{'ID': $id}";
+    final body = '{"ID": $id}';
     return ApiManager.instance.makeApiCall(
       callName: 'deleteXiangMuDengJiBiao',
       apiUrl:

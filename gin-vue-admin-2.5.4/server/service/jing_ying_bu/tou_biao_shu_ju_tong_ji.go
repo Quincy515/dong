@@ -34,6 +34,14 @@ func (touBiaoShuJuTongJiService *TouBiaoShuJuTongJiService) DeleteTouBiaoShuJuTo
 // UpdateTouBiaoShuJuTongJi 更新TouBiaoShuJuTongJi记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (touBiaoShuJuTongJiService *TouBiaoShuJuTongJiService) UpdateTouBiaoShuJuTongJi(touBiaoShuJuTongJi jing_ying_bu.TouBiaoShuJuTongJi) (err error) {
+	if touBiaoShuJuTongJi.CreatedAt.IsZero() && touBiaoShuJuTongJi.ID != 0 {
+		var temp jing_ying_bu.TouBiaoShuJuTongJi
+		err = global.GVA_DB.Where("id = ?", touBiaoShuJuTongJi.ID).First(&temp).Error
+		if err != nil {
+			return err
+		}
+		touBiaoShuJuTongJi.CreatedAt = temp.CreatedAt
+	}
 	err = global.GVA_DB.Save(&touBiaoShuJuTongJi).Error
 	return err
 }

@@ -34,6 +34,14 @@ func (kaoQinTongJiService *KaoQinTongJiService) DeleteKaoQinTongJiByIds(ids requ
 // UpdateKaoQinTongJi 更新KaoQinTongJi记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (kaoQinTongJiService *KaoQinTongJiService) UpdateKaoQinTongJi(kaoQinTongJi hr.KaoQinTongJi) (err error) {
+	if kaoQinTongJi.CreatedAt.IsZero() && kaoQinTongJi.ID != 0 {
+		var temp hr.KaoQinTongJi
+		err = global.GVA_DB.Where("id = ?", kaoQinTongJi.ID).First(&temp).Error
+		if err != nil {
+			return err
+		}
+		kaoQinTongJi.CreatedAt = temp.CreatedAt
+	}
 	err = global.GVA_DB.Save(&kaoQinTongJi).Error
 	return err
 }

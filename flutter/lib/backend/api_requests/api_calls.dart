@@ -325,6 +325,12 @@ class JingYingBuGroup {
       DeleteXiangMuDengJiBiaoCall();
   static UpdateXiangMuDengJiBiaoCall updateXiangMuDengJiBiaoCall =
       UpdateXiangMuDengJiBiaoCall();
+  static GetTouBiaoShuJuTongJiListCall getTouBiaoShuJuTongJiListCall =
+      GetTouBiaoShuJuTongJiListCall();
+  static DeleteTouBiaoShuJuTongJiCall deleteTouBiaoShuJuTongJiCall =
+      DeleteTouBiaoShuJuTongJiCall();
+  static UpdateTouBiaoShuJuTongJiCall updateTouBiaoShuJuTongJiCall =
+      UpdateTouBiaoShuJuTongJiCall();
 }
 
 class GetXiangMuDengJiBiaoListCall {
@@ -414,6 +420,113 @@ ${item}''';
       callName: 'updateXiangMuDengJiBiao',
       apiUrl:
           '${JingYingBuGroup.baseUrl}/xiangMuDengJiBiao/updateXiangMuDengJiBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetTouBiaoShuJuTongJiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getTouBiaoShuJuTongJiList',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/touBiaoShuJuTongJi/getTouBiaoShuJuTongJiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteTouBiaoShuJuTongJiCall {
+  Future<ApiCallResponse> call({
+    int? id = 0,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteTouBiaoShuJuTongJi',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/touBiaoShuJuTongJi/deleteTouBiaoShuJuTongJi',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...JingYingBuGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateTouBiaoShuJuTongJiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateTouBiaoShuJuTongJi',
+      apiUrl:
+          '${JingYingBuGroup.baseUrl}/touBiaoShuJuTongJi/updateTouBiaoShuJuTongJi',
       callType: ApiCallType.PUT,
       headers: {
         ...JingYingBuGroup.headers,

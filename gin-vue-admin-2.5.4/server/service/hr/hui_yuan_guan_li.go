@@ -34,6 +34,14 @@ func (huiYuanGuanLiService *HuiYuanGuanLiService) DeleteHuiYuanGuanLiByIds(ids r
 // UpdateHuiYuanGuanLi 更新HuiYuanGuanLi记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (huiYuanGuanLiService *HuiYuanGuanLiService) UpdateHuiYuanGuanLi(huiYuanGuanLi hr.HuiYuanGuanLi) (err error) {
+	if huiYuanGuanLi.CreatedAt.IsZero() && huiYuanGuanLi.ID != 0 {
+		var temp hr.HuiYuanGuanLi
+		err = global.GVA_DB.Where("id = ?", huiYuanGuanLi.ID).First(&temp).Error
+		if err != nil {
+			return err
+		}
+		huiYuanGuanLi.CreatedAt = temp.CreatedAt
+	}
 	err = global.GVA_DB.Save(&huiYuanGuanLi).Error
 	return err
 }

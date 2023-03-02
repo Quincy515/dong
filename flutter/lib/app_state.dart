@@ -48,11 +48,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_password', _value);
   }
 
-  String _userID = '';
-  String get userID => _userID;
-  set userID(String _value) {
+  int _userID = 1;
+  int get userID => _userID;
+  set userID(int _value) {
     _userID = _value;
-    prefs.setString('ff_userID', _value);
+    prefs.setInt('ff_userID', _value);
   }
 
   String _nickName = '';

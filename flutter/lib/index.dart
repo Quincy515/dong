@@ -19,3 +19,6 @@ export '/gong_si_zhang_hao_mi_ma/gong_si_zhang_hao_mi_ma_widget.dart'
     show GongSiZhangHaoMiMaWidget;
 export '/gong_zhang_deng_ji/gong_zhang_deng_ji_widget.dart'
     show GongZhangDengJiWidget;
+export '/zheng_shu_biao/zheng_shu_biao_widget.dart' show ZhengShuBiaoWidget;
+export '/zheng_shu_jie_chu_ji_l/zheng_shu_jie_chu_ji_l_widget.dart'
+    show ZhengShuJieChuJiLWidget;

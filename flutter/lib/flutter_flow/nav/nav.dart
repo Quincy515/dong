@@ -102,6 +102,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'gongZhangDengJi',
               path: 'gongZhangDengJi',
               builder: (context, params) => GongZhangDengJiWidget(),
+            ),
+            FFRoute(
+              name: 'zhengShuBiao',
+              path: 'zhengShuBiao',
+              builder: (context, params) => ZhengShuBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'zhengShuJieChuJiLuBiao',
+              path: 'zhengShuJieChuJiLuBiao',
+              builder: (context, params) => ZhengShuJieChuJiLWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

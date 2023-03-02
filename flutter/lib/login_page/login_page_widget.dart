@@ -20,15 +20,40 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  String? captchaId;
+  String? captchaImage;
+  late final Future<ApiCallResponse> _showCaptcha;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
-    _model.usernameController ??= TextEditingController();
-    _model.passwordController ??= TextEditingController();
+    _model.usernameController ??=
+        TextEditingController(text: FFAppState().username);
+    _model.passwordController ??=
+        TextEditingController(text: FFAppState().password);
     _model.captchaController ??= TextEditingController();
+
+    _showCaptcha = showCaptcha();
+  }
+
+  Future<ApiCallResponse> showCaptcha() async {
+    var columnGetCaptchaResponse = await BaseGroup.getCaptchaCall.call();
+    setState(() {
+      captchaImage = BaseGroup.getCaptchaCall
+          .picPath(
+            columnGetCaptchaResponse.jsonBody,
+          )
+          .toString();
+
+      captchaId = BaseGroup.getCaptchaCall
+          .captchaId(
+            columnGetCaptchaResponse.jsonBody,
+          )
+          .toString();
+    });
+    return BaseGroup.getCaptchaCall.call();
   }
 
   @override
@@ -91,7 +116,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     child: FutureBuilder<ApiCallResponse>(
-                      future: BaseGroup.getCaptchaCall.call(),
+                      future: _showCaptcha, //BaseGroup.getCaptchaCall.call(),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -106,7 +131,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           );
                         }
-                        final columnGetCaptchaResponse = snapshot.data!;
+                        // final columnGetCaptchaResponse = snapshot.data!;
                         return Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -414,13 +439,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 0.0, 0.0),
-                                    child: Image.network(
-                                      BaseGroup.getCaptchaCall.picPath(
-                                        columnGetCaptchaResponse.jsonBody,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await showCaptcha();
+                                      },
+                                      child: Image.network(
+                                        captchaImage!,
+                                        // BaseGroup.getCaptchaCall.picPath(
+                                        //   columnGetCaptchaResponse.jsonBody,
+                                        // ),
+                                        width: 135.0,
+                                        height: 60.0,
+                                        fit: BoxFit.contain,
                                       ),
-                                      width: 135.0,
-                                      height: 60.0,
-                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 ],
@@ -441,14 +472,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             _model.usernameController.text,
                                         password:
                                             _model.passwordController.text,
-                                        captchaId: BaseGroup.getCaptchaCall
-                                            .captchaId(
-                                              columnGetCaptchaResponse.jsonBody,
-                                            )
-                                            .toString(),
+                                        captchaId: captchaId,
                                         captcha: _model.captchaController.text,
                                       );
                                       FFAppState().update(() {
+                                        FFAppState().username =
+                                            _model.usernameController.text;
+                                        FFAppState().password =
+                                            _model.passwordController.text;
                                         FFAppState().xtoken = BaseGroup
                                             .loginCall
                                             .token(

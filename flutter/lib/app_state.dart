@@ -33,6 +33,20 @@ class FFAppState extends ChangeNotifier {
     _xtoken = _value;
     prefs.setString('ff_xtoken', _value);
   }
+
+  String _username = '';
+  String get username => _username;
+  set username(String _value) {
+    _username = _value;
+    prefs.setString('ff_username', _value);
+  }
+
+  String _password = '';
+  String get password => _password;
+  set password(String _value) {
+    _password = _value;
+    prefs.setString('ff_password', _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

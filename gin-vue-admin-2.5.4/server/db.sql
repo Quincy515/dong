@@ -212,21 +212,21 @@ create table `dong`.gong_zhang_deng_ji (
 -- 8. 证书
 create table `dong`.zheng_shu_biao (
   `group` varchar(100) NULL comment '所属',
-  `zhengShuMingCheng` varchar(100) NULL comment '证书名称',
-  `zhengShuBianHao` varchar(100) NULL comment '证书编号',
-  `zhengShuLeiBie` INT NULL comment '证书类别',
-  `suoYouRenXingMing` varchar(100) NULL comment '所有人姓名',
-  `shenFenZhengHao` varchar(100) NULL comment '身份证号',
-  `shouJiHaoMa` varchar(100) NULL comment '手机号码',
-  `faZhengBuMen` varchar(100) NULL comment '发证部门',
-  `zhengShuSuoShuChengShi` INT NULL comment '证书所属城市',
-  `zhengShuZhuangTai` INT NULL comment '证书状态',
-  `zhengShuDaoQiRiQi` DATETIME NULL comment '证书到期日期',
-  `zhengShuNianShiYongFei` varchar(100) NULL comment '证书年使用费',
-  `zhiFuRiQi` DATETIME NULL comment '支付日期',
-  `shiFouJieChu` boolean NULL comment '是否借出',
-  `tianJiaRen` INT NULL comment '添加人',
-  `beiZhu` varchar(100) NULL comment '备注',
+  `zheng_shu_ming_cheng` varchar(100) NULL comment '证书名称',
+  `zheng_shu_bian_hao` varchar(100) NULL comment '证书编号',
+  `zheng_shu_lei_bie` INT NULL comment '证书类别',
+  `suo_you_ren_xing_ming` varchar(100) NULL comment '所有人姓名',
+  `shen_fen_zheng_hao` varchar(100) NULL comment '身份证号',
+  `shou_ji_hao_ma` varchar(100) NULL comment '手机号码',
+  `fa_zheng_bu_men` varchar(100) NULL comment '发证部门',
+  `zheng_shu_suo_shu_cheng_shi` INT NULL comment '证书所属城市',
+  `zheng_shu_zhuang_tai` INT NULL comment '证书状态',
+  `zheng_shu_dao_qi_ri_qi` DATETIME NULL comment '证书到期日期',
+  `zheng_shu_nian_shi_yong_fei` varchar(100) NULL comment '证书年使用费',
+  `zhi_fu_ri_qi` DATETIME NULL comment '支付日期',
+  `shi_fou_jie_chu` boolean NULL comment '是否借出',
+  `tian_jia_ren` INT NULL comment '添加人',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书表';
 -- 8.1 证书类别 外聘、内证
 create table `dong`.zheng_shu_biao (
@@ -236,15 +236,16 @@ create table `dong`.zheng_shu_biao (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书类别';
 -- 9. 证书借出记录表
 create table `dong`.zheng_shu_jie_chu_ji_lu_biao (
-  `zheng_shu_id` VARCHAR(100) NULL comment '证书ID',
-  `lei_xing` INT NULL comment '类型',
-  `jie_chu_ren` INT NULL comment '借出人',
+  `group` varchar(100) NULL comment '所属',
+  `zheng_shu_ming_cheng` varchar(100) NULL comment '证书名称',
+  `zheng_shu_bian_hao` varchar(100) NULL comment '证书编号',
+  `zheng_shu_id` INT NULL comment '证书ID',
+  `jie_chu_ren` INT NULL comment '借出人ID',
   `jie_chu_ri_qi` DATETIME NULL comment '借出日期',
   `jie_chu_shi_you` VARCHAR(100) NULL comment '借出事由',
   `yu_ji_gui_hai_ri_qi` DATETIME NULL comment '预计归还日期',
   `shi_ji_gui_hai_ri_qi` DATETIME NULL comment '实际归还日期',
   `tian_jia_ren` INT NULL comment '添加人',
-  `tian_jia_shi_jian` DATETIME NULL comment '添加时间',
-  `jie_chu_bei_zhu` VARCHAR(100) NULL comment '借出备注',
-  `gui_hai_bei_zhu` VARCHAR(100) NULL comment '归还备注'
+  `jie_chu_bei_zhu` text NULL comment '借出备注',
+  `gui_hai_bei_zhu` text NULL comment '归还备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书借出记录表';

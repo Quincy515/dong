@@ -44,6 +44,8 @@ class WebNavWidget extends StatefulWidget {
 class _WebNavWidgetState extends State<WebNavWidget>
     with TickerProviderStateMixin {
   late WebNavModel _model;
+  late final Future<ApiCallResponse> _future;
+  late final menus;
 
   var hasContainerTriggered1 = false;
   var hasContainerTriggered2 = false;
@@ -93,6 +95,8 @@ class _WebNavWidgetState extends State<WebNavWidget>
           !anim.applyInitialState),
       this,
     );
+
+    _future = getMenu();
   }
 
   @override
@@ -100,6 +104,24 @@ class _WebNavWidgetState extends State<WebNavWidget>
     _model.maybeDispose();
 
     super.dispose();
+  }
+
+  Future<ApiCallResponse> getMenu() async {
+    var columnGetMenuResponse = await BaseGroup.getMenuCall.call();
+    if (BaseGroup.getMenuCall.code(columnGetMenuResponse.jsonBody) != 0) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        context.goNamed('loginPage');
+      });
+    } else {
+      setState(() {
+        menus = BaseGroup.getMenuCall
+                .menus(columnGetMenuResponse.jsonBody)
+                ?.toList() ??
+            [];
+      });
+    }
+
+    return BaseGroup.getMenuCall.call();
   }
 
   @override
@@ -189,7 +211,7 @@ class _WebNavWidgetState extends State<WebNavWidget>
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: FutureBuilder<ApiCallResponse>(
-                future: BaseGroup.getMenuCall.call(),
+                future: _future, //BaseGroup.getMenuCall.call(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -203,15 +225,8 @@ class _WebNavWidgetState extends State<WebNavWidget>
                       ),
                     );
                   }
-                  final columnGetMenuResponse = snapshot.data!;
                   return Builder(
                     builder: (context) {
-                      final menus = BaseGroup.getMenuCall
-                              .menus(
-                                columnGetMenuResponse.jsonBody,
-                              )
-                              ?.toList() ??
-                          [];
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -278,9 +293,10 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                       ),
                                     ),
                                     if (getJsonField(
-                                      menusItem,
-                                      r'''$.children''',
-                                    ))
+                                          menusItem,
+                                          r'''$.children''',
+                                        ) !=
+                                        null)
                                       Builder(
                                         builder: (context) {
                                           final children = getJsonField(
@@ -298,35 +314,51 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 0.0, 12.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.dashboard_rounded,
-                                                      color: widget.navColorOne,
-                                                      size: 24.0,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  12.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: AutoSizeText(
-                                                        getJsonField(
-                                                          childrenItem,
-                                                          r'''$.meta.title''',
-                                                        ).toString(),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText2,
+                                                child: InkWell(
+                                                  highlightColor: Colors.blue,
+                                                  autofocus: true,
+                                                  onTap: () async {
+                                                    Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 300),
+                                                        () {
+                                                      context
+                                                          .goNamed(getJsonField(
+                                                        childrenItem,
+                                                        r'''$.path''',
+                                                      ).toString());
+                                                    });
+                                                  },
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.dashboard_rounded,
+                                                        color:
+                                                            widget.navColorOne,
+                                                        size: 24.0,
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: AutoSizeText(
+                                                          getJsonField(
+                                                            childrenItem,
+                                                            r'''$.meta.title''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               );
                                             }),

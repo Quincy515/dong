@@ -99,8 +99,7 @@ class GetMenuCall {
       callType: ApiCallType.POST,
       headers: {
         ...BaseGroup.headers,
-        'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+        'x-token': FFAppState().xtoken,
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -152,8 +151,7 @@ class AdminregisterCall {
       callType: ApiCallType.POST,
       headers: {
         ...BaseGroup.headers,
-        'x-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+        'x-token': FFAppState().xtoken,
       },
       params: {},
       body: body,
@@ -182,8 +180,7 @@ class AdminregisterCall {
 class UserGroup {
   static String baseUrl = 'http://119.45.234.161:8888/user';
   static Map<String, String> headers = {
-    'x-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNjk5MDhjN2EtNTAzNy00YjI4LWEzNWUtYmE3MWZjMzY5NGFhIiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwLCJleHAiOjE2Njk2MTY0ODgsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY2OTAxMDY4OH0.XZEgZ4BMT-KXqkSki1YNNPD_xnqMP9ef7DfE2XYMLno',
+    'x-token': FFAppState().xtoken,
   };
   static GetUserListCall getUserListCall = GetUserListCall();
 }
@@ -249,8 +246,7 @@ class GetUserListCall {
 class FileGroup {
   static String baseUrl = 'http://119.45.234.161:8888';
   static Map<String, String> headers = {
-    'x-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZjk4MjEyZGItMjM0NC00YWZkLWJmODQtNzU1MzFiY2JkMGI3IiwiSUQiOjgsIlVzZXJuYW1lIjoiaW1tYW51ZWwiLCJOaWNrTmFtZSI6IuacseS6kea2myIsIkF1dGhvcml0eUlkIjo5MDAwLCJCdWZmZXJUaW1lIjo4NjQwMCwiZXhwIjoxNjY5NzIzODkxLCJpc3MiOiJxbVBsdXMiLCJuYmYiOjE2NjkxMTgwOTF9.xAAyGMc8Ym5dEqFVOwGz9Oqvzh5jR_R2ZYCNhSe5-JI',
+    'x-token': FFAppState().xtoken,
   };
   static GetFileListCall getFileListCall = GetFileListCall();
 }
@@ -316,8 +312,7 @@ class GetFileListCall {
 class JingYingBuGroup {
   static String baseUrl = 'http://119.45.234.161:8888';
   static Map<String, String> headers = {
-    'x-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiOWQ0ZTM2ZjMtN2I5OS00MDcxLWFjN2YtZDQxZmJhMDc0OWQ1IiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Ik1yLuWlh-a3vCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwMDAwMDAwMDAwLCJleHAiOjE2NzgxNTcxNzEsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY3NzQ5OTI3Nn0.SFIMj4ux7aEG-RQViU5GK6ib_3UkVWRqeyNOxLB20nY',
+    'x-token': FFAppState().xtoken,
   };
   static GetXiangMuDengJiBiaoListCall getXiangMuDengJiBiaoListCall =
       GetXiangMuDengJiBiaoListCall();
@@ -554,8 +549,7 @@ ${item}''';
 class BanGongShiGroup {
   static String baseUrl = 'http://119.45.234.161:8888';
   static Map<String, String> headers = {
-    'x-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiOWQ0ZTM2ZjMtN2I5OS00MDcxLWFjN2YtZDQxZmJhMDc0OWQ1IiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Ik1yLuWlh-a3vCIsIkF1dGhvcml0eUlkIjo4ODgsIkJ1ZmZlclRpbWUiOjg2NDAwMDAwMDAwMDAwLCJleHAiOjE2NzgyNTQzNjYsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY3NzQ5OTI3Nn0.pC6hjSydmUBBdmQR2Vkggqw5n1AEiu2L8LmQ8dvwTWE',
+    'x-token': FFAppState().xtoken,
   };
   static GetYuanGongHuaMingCeListCall getYuanGongHuaMingCeListCall =
       GetYuanGongHuaMingCeListCall();

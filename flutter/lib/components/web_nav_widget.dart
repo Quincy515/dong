@@ -587,8 +587,9 @@ class _WebNavWidgetState extends State<WebNavWidget>
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50.0),
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+                              imageUrl: FFAppState().headerImg != ''
+                                  ? FFAppState().headerImg
+                                  : 'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
                               width: 50.0,
                               height: 50.0,
                               fit: BoxFit.cover,
@@ -603,12 +604,12 @@ class _WebNavWidgetState extends State<WebNavWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Andrew D.',
+                                    FFAppState().username,
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                   Text(
-                                    'Admin',
+                                    FFAppState().authorityName,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText2
                                         .override(

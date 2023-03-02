@@ -486,6 +486,28 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               (_model.loginRes?.jsonBody ?? ''),
                                             )
                                             .toString();
+                                        FFAppState().userID = BaseGroup
+                                            .loginCall
+                                            .userID(
+                                              (_model.loginRes?.jsonBody ?? ''),
+                                            )
+                                            .toString();
+                                        FFAppState().headerImg =
+                                            BaseGroup.loginCall.headerImg(
+                                          (_model.loginRes?.jsonBody ?? ''),
+                                        );
+                                        FFAppState().nickName = BaseGroup
+                                            .loginCall
+                                            .nickName(
+                                              (_model.loginRes?.jsonBody ?? ''),
+                                            )
+                                            .toString();
+                                        FFAppState().authorityName = BaseGroup
+                                            .loginCall
+                                            .authorityName(
+                                              (_model.loginRes?.jsonBody ?? ''),
+                                            )
+                                            .toString();
                                       });
 
                                       context.goNamed(

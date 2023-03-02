@@ -89,6 +89,26 @@ class LoginCall {
         response,
         r'''$.data.token''',
       );
+  dynamic userID(dynamic response) => getJsonField(
+        response,
+        r'''$.data.user.ID''',
+      );
+  dynamic userName(dynamic response) => getJsonField(
+        response,
+        r'''$.data.user.userName''',
+      );
+  dynamic nickName(dynamic response) => getJsonField(
+        response,
+        r'''$.data.user.nickName''',
+      );
+  dynamic headerImg(dynamic response) => getJsonField(
+        response,
+        r'''$.data.user.headerImg''',
+      );
+  dynamic authorityName(dynamic response) => getJsonField(
+        response,
+        r'''$.data.user.authority.authorityName''',
+      );
 }
 
 class GetMenuCall {

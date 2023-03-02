@@ -210,4 +210,41 @@ create table `dong`.gong_zhang_deng_ji (
   `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '公章登记';
 -- 8. 证书
-create table `dong`.gong_zhang_deng_ji (`group` varchar(100) NULL comment '所属',) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '公章登记';
+create table `dong`.zheng_shu_biao (
+  `group` varchar(100) NULL comment '所属',
+  `zhengShuMingCheng` varchar(100) NULL comment '证书名称',
+  `zhengShuBianHao` varchar(100) NULL comment '证书编号',
+  `zhengShuLeiBie` INT NULL comment '证书类别',
+  `suoYouRenXingMing` varchar(100) NULL comment '所有人姓名',
+  `shenFenZhengHao` varchar(100) NULL comment '身份证号',
+  `shouJiHaoMa` varchar(100) NULL comment '手机号码',
+  `faZhengBuMen` varchar(100) NULL comment '发证部门',
+  `zhengShuSuoShuChengShi` INT NULL comment '证书所属城市',
+  `zhengShuZhuangTai` INT NULL comment '证书状态',
+  `zhengShuDaoQiRiQi` DATETIME NULL comment '证书到期日期',
+  `zhengShuNianShiYongFei` varchar(100) NULL comment '证书年使用费',
+  `zhiFuRiQi` DATETIME NULL comment '支付日期',
+  `shiFouJieChu` boolean NULL comment '是否借出',
+  `tianJiaRen` INT NULL comment '添加人',
+  `beiZhu` varchar(100) NULL comment '备注',
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书表';
+-- 8.1 证书类别 外聘、内证
+create table `dong`.zheng_shu_biao (
+  `group` varchar(100) NULL comment '所属',
+  `lei_bie_ming_cheng` varchar(100) NULL comment '类别名称',
+  `zhuang_tai` INT NULL comment '状态'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书类别';
+-- 9. 证书借出记录表
+create table `dong`.zheng_shu_jie_chu_ji_lu_biao (
+  `zheng_shu_id` VARCHAR(100) NULL comment '证书ID',
+  `lei_xing` INT NULL comment '类型',
+  `jie_chu_ren` INT NULL comment '借出人',
+  `jie_chu_ri_qi` DATETIME NULL comment '借出日期',
+  `jie_chu_shi_you` VARCHAR(100) NULL comment '借出事由',
+  `yu_ji_gui_hai_ri_qi` DATETIME NULL comment '预计归还日期',
+  `shi_ji_gui_hai_ri_qi` DATETIME NULL comment '实际归还日期',
+  `tian_jia_ren` INT NULL comment '添加人',
+  `tian_jia_shi_jian` DATETIME NULL comment '添加时间',
+  `jie_chu_bei_zhu` VARCHAR(100) NULL comment '借出备注',
+  `gui_hai_bei_zhu` VARCHAR(100) NULL comment '归还备注'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '证书借出记录表';

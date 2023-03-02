@@ -47,6 +47,34 @@ class FFAppState extends ChangeNotifier {
     _password = _value;
     prefs.setString('ff_password', _value);
   }
+
+  String _userID = '';
+  String get userID => _userID;
+  set userID(String _value) {
+    _userID = _value;
+    prefs.setString('ff_userID', _value);
+  }
+
+  String _nickName = '';
+  String get nickName => _nickName;
+  set nickName(String _value) {
+    _nickName = _value;
+    prefs.setString('ff_nickName', _value);
+  }
+
+  String _headerImg = '';
+  String get headerImg => _headerImg;
+  set headerImg(String _value) {
+    _headerImg = _value;
+    prefs.setString('ff_headerImg', _value);
+  }
+
+  String _authorityName = '';
+  String get authorityName => _authorityName;
+  set authorityName(String _value) {
+    _authorityName = _value;
+    prefs.setString('ff_authorityName', _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

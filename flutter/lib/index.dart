@@ -22,3 +22,6 @@ export '/gong_zhang_deng_ji/gong_zhang_deng_ji_widget.dart'
 export '/zheng_shu_biao/zheng_shu_biao_widget.dart' show ZhengShuBiaoWidget;
 export '/zheng_shu_jie_chu_ji_l/zheng_shu_jie_chu_ji_l_widget.dart'
     show ZhengShuJieChuJiLWidget;
+export '/dictionary/dictionary_widget.dart' show DictionaryWidget;
+export '/dictionary_detail/dictionary_detail_widget.dart'
+    show DictionaryDetailWidget;

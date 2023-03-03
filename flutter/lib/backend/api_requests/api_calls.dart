@@ -289,6 +289,18 @@ class FileGroup {
   };
   static GetFileListCall getFileListCall = GetFileListCall();
   static FindSysDictionaryCall findSysDictionaryCall = FindSysDictionaryCall();
+  static GetSysDictionaryListCall getSysDictionaryListCall =
+      GetSysDictionaryListCall();
+  static DeleteSysDictionaryCall deleteSysDictionaryCall =
+      DeleteSysDictionaryCall();
+  static UpdateSysDictionaryCall updateSysDictionaryCall =
+      UpdateSysDictionaryCall();
+  static GetSysDictionaryDetailListCall getSysDictionaryDetailListCall =
+      GetSysDictionaryDetailListCall();
+  static UpdateSysDictionaryDetailCall updateSysDictionaryDetailCall =
+      UpdateSysDictionaryDetailCall();
+  static DeleteSysDictionaryDetailCall deleteSysDictionaryDetailCall =
+      DeleteSysDictionaryDetailCall();
 }
 
 class GetFileListCall {
@@ -376,6 +388,219 @@ class FindSysDictionaryCall {
         r'''$.data.resysDictionary.sysDictionaryDetails[:].value''',
         true,
       );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetSysDictionaryListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getSysDictionaryList',
+      apiUrl: '${FileGroup.baseUrl}/sysDictionary/getSysDictionaryList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteSysDictionaryCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteSysDictionary',
+      apiUrl: '${FileGroup.baseUrl}/sysDictionary/deleteSysDictionary',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateSysDictionaryCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateSysDictionary',
+      apiUrl: '${FileGroup.baseUrl}/sysDictionary/updateSysDictionary',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetSysDictionaryDetailListCall {
+  Future<ApiCallResponse> call({
+    int? sysDictionaryID = 1,
+    int? pageSize = 10,
+    int? page = 1,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getSysDictionaryDetailList',
+      apiUrl:
+          '${FileGroup.baseUrl}/sysDictionaryDetail/getSysDictionaryDetailList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+        'sysDictionaryID': sysDictionaryID,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateSysDictionaryDetailCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateSysDictionaryDetail',
+      apiUrl:
+          '${FileGroup.baseUrl}/sysDictionaryDetail/updateSysDictionaryDetail',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteSysDictionaryDetailCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteSysDictionaryDetail',
+      apiUrl:
+          '${FileGroup.baseUrl}/sysDictionaryDetail/deleteSysDictionaryDetail',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...FileGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
   dynamic msg(dynamic response) => getJsonField(
         response,
         r'''$.msg''',

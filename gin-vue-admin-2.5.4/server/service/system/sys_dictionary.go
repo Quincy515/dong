@@ -57,6 +57,11 @@ func (dictionaryService *DictionaryService) DeleteSysDictionary(sysDictionary sy
 //@return: err error
 
 func (dictionaryService *DictionaryService) UpdateSysDictionary(sysDictionary *system.SysDictionary) (err error) {
+	if sysDictionary.ID == 0 {
+		err = global.GVA_DB.Save(sysDictionary).Error
+		return
+	}
+
 	var dict system.SysDictionary
 	sysDictionaryMap := map[string]interface{}{
 		"Name":   sysDictionary.Name,
@@ -121,6 +126,6 @@ func (dictionaryService *DictionaryService) GetSysDictionaryInfoList(info reques
 	if err != nil {
 		return
 	}
-	err = db.Limit(limit).Offset(offset).Find(&sysDictionarys).Error
+	err = db.Order("id DESC").Limit(limit).Offset(offset).Find(&sysDictionarys).Error
 	return sysDictionarys, total, err
 }

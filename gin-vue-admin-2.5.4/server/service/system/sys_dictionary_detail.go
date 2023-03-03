@@ -37,6 +37,14 @@ func (dictionaryDetailService *DictionaryDetailService) DeleteSysDictionaryDetai
 //@return: err error
 
 func (dictionaryDetailService *DictionaryDetailService) UpdateSysDictionaryDetail(sysDictionaryDetail *system.SysDictionaryDetail) (err error) {
+	if sysDictionaryDetail.CreatedAt.IsZero() && sysDictionaryDetail.ID != 0 {
+		var temp system.SysDictionaryDetail
+		err = global.GVA_DB.Where("id = ?", sysDictionaryDetail.ID).First(&temp).Error
+		if err != nil {
+			return err
+		}
+		sysDictionaryDetail.CreatedAt = temp.CreatedAt
+	}
 	err = global.GVA_DB.Save(sysDictionaryDetail).Error
 	return err
 }
@@ -81,6 +89,6 @@ func (dictionaryDetailService *DictionaryDetailService) GetSysDictionaryDetailIn
 	if err != nil {
 		return
 	}
-	err = db.Limit(limit).Offset(offset).Order("sort").Find(&sysDictionaryDetails).Error
+	err = db.Order("id DESC").Limit(limit).Offset(offset).Order("sort").Find(&sysDictionaryDetails).Error
 	return sysDictionaryDetails, total, err
 }

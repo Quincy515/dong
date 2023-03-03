@@ -112,6 +112,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'zhengShuJieChuJiLuBiao',
               path: 'zhengShuJieChuJiLuBiao',
               builder: (context, params) => ZhengShuJieChuJiLWidget(),
+            ),
+            FFRoute(
+              name: 'dictionary',
+              path: 'dictionary',
+              builder: (context, params) => DictionaryWidget(),
+            ),
+            FFRoute(
+              name: 'dictionaryDetail',
+              path: 'dictionaryDetail',
+              builder: (context, params) => DictionaryDetailWidget(
+                sysDictionaryID:
+                    params.getParam('sysDictionaryID', ParamType.int),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

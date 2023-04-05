@@ -5,6 +5,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../fen_bao_shang_biao/fen_bao_shang_biao_widget.dart';
+import '../../fen_bao_shang_yu_xiang_mu_guan_lian_biao/fen_bao_shang_yu_xiang_mu_guan_lian_biao_widget.dart';
+import '../../he_tong_wen_jian_biao/he_tong_wen_jian_biao_widget.dart';
+import '../../xiang_mu_shi_gong_biao/xiang_mu_shi_gong_biao_widget.dart';
 import '../flutter_flow_theme.dart';
 
 import '../../index.dart';
@@ -125,7 +129,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 sysDictionaryID:
                     params.getParam('sysDictionaryID', ParamType.int),
               ),
-            )
+            ),
+            FFRoute(
+              name: 'xiangMuBiao',
+              path: 'xiangMuBiao',
+              builder: (context, params) => XiangMuBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'xiangMuShiGongBiao',
+              path: 'xiangMuShiGongBiao',
+              builder: (context, params) => XiangMuShiGongBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'heTongWenJianBiao',
+              path: 'heTongWenJianBiao',
+              builder: (context, params) => HeTongWenJianBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'fenBaoShangBiao',
+              path: 'fenBaoShangBiao',
+              builder: (context, params) => FenBaoShangBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'fenBaoShangYuXiangMuGuanLianBiao',
+              path: 'fenBaoShangYuXiangMuGuanLianBiao',
+              builder: (context, params) =>
+                  FenBaoShangYuXiangMuGuanLianBiaoWidget(),
+            ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
       ],

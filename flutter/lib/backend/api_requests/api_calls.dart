@@ -1857,6 +1857,615 @@ ${item}''';
 
 /// End banGongShi Group Code
 
+/// Start xiangMuBiao Group Code
+class XiangMuBiaoGroup {
+  static String baseUrl = 'http://119.45.234.161:8888/xiangMuBiao';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static GetXiangMuBiaoListCall getXiangMuBiaoListCall =
+      GetXiangMuBiaoListCall();
+  static DeleteXiangMuBiaoCall deleteXiangMuBiaoCall = DeleteXiangMuBiaoCall();
+  static UpdateXiangMuBiaoCall updateXiangMuBiaoCall = UpdateXiangMuBiaoCall();
+}
+
+class GetXiangMuBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getXiangMuBiaoList',
+      apiUrl: '${XiangMuBiaoGroup.baseUrl}/getXiangMuBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...XiangMuBiaoGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteXiangMuBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteXiangMuBiao',
+      apiUrl: '${XiangMuBiaoGroup.baseUrl}/deleteXiangMuBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...XiangMuBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateXiangMuBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateXiangMuBiao',
+      apiUrl: '${XiangMuBiaoGroup.baseUrl}/updateXiangMuBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...XiangMuBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End xiangMuBiao Group Code
+
+/// Start xiangMuShiGongBiao Group Code
+
+class XiangMuShiGongBiaoGroup {
+  static String baseUrl = 'http://119.45.234.161:8888/xiangMuShiGongBiao';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static GetXiangMuShiGongBiaoListCall getXiangMuShiGongBiaoListCall =
+      GetXiangMuShiGongBiaoListCall();
+  static DeleteXiangMuShiGongBiaoCall deleteXiangMuShiGongBiaoCall =
+      DeleteXiangMuShiGongBiaoCall();
+  static UpdateXiangMuShiGongBiaoCall updateXiangMuShiGongBiaoCall =
+      UpdateXiangMuShiGongBiaoCall();
+}
+
+class GetXiangMuShiGongBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page,
+    int? pageSize,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getXiangMuShiGongBiaoList',
+      apiUrl: '${XiangMuShiGongBiaoGroup.baseUrl}/getXiangMuShiGongBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...XiangMuShiGongBiaoGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteXiangMuShiGongBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteXiangMuShiGongBiao',
+      apiUrl: '${XiangMuShiGongBiaoGroup.baseUrl}/deleteXiangMuShiGongBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...XiangMuShiGongBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateXiangMuShiGongBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateXiangMuShiGongBiao',
+      apiUrl: '${XiangMuShiGongBiaoGroup.baseUrl}/updateXiangMuShiGongBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...XiangMuShiGongBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End xiangMuShiGongBiao Group Code
+
+/// Start fenBaoShangBiao Group Code
+
+class FenBaoShangBiaoGroup {
+  static String baseUrl = 'http://119.45.234.161:8888/fenBaoShangBiao';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static GetFenBaoShangBiaoListCall getFenBaoShangBiaoListCall =
+      GetFenBaoShangBiaoListCall();
+  static DeleteFenBaoShangBiaoCall deleteFenBaoShangBiaoCall =
+      DeleteFenBaoShangBiaoCall();
+  static UpdateFenBaoShangBiaoCall updateFenBaoShangBiaoCall =
+      UpdateFenBaoShangBiaoCall();
+}
+
+class GetFenBaoShangBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page,
+    int? pageSize,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getFenBaoShangBiaoList',
+      apiUrl: '${FenBaoShangBiaoGroup.baseUrl}/getFenBaoShangBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...FenBaoShangBiaoGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteFenBaoShangBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteFenBaoShangBiao',
+      apiUrl: '${FenBaoShangBiaoGroup.baseUrl}/deleteFenBaoShangBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...FenBaoShangBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateFenBaoShangBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateFenBaoShangBiao',
+      apiUrl: '${FenBaoShangBiaoGroup.baseUrl}/updateFenBaoShangBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...FenBaoShangBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End fenBaoShangBiao Group Code
+
+/// Start fenBaoShangYuXiangMuGuanLianBiao Group Code
+
+class FenBaoShangYuXiangMuGuanLianBiaoGroup {
+  static String baseUrl =
+      'http://119.45.234.161:8888/fenBaoShangYuXiangMuGuanLianBiao';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static GetFenBaoShangYuXiangMuGuanLianBiaoListCall
+      getFenBaoShangYuXiangMuGuanLianBiaoListCall =
+      GetFenBaoShangYuXiangMuGuanLianBiaoListCall();
+  static DeleteFenBaoShangYuXiangMuGuanLianBiaoCall
+      deleteFenBaoShangYuXiangMuGuanLianBiaoCall =
+      DeleteFenBaoShangYuXiangMuGuanLianBiaoCall();
+  static UpdateFenBaoShangYuXiangMuGuanLianBiaoCall
+      updateFenBaoShangYuXiangMuGuanLianBiaoCall =
+      UpdateFenBaoShangYuXiangMuGuanLianBiaoCall();
+}
+
+class GetFenBaoShangYuXiangMuGuanLianBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page,
+    int? pageSize,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getFenBaoShangYuXiangMuGuanLianBiaoList',
+      apiUrl:
+          '${FenBaoShangYuXiangMuGuanLianBiaoGroup.baseUrl}/getFenBaoShangYuXiangMuGuanLianBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...FenBaoShangYuXiangMuGuanLianBiaoGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteFenBaoShangYuXiangMuGuanLianBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteFenBaoShangYuXiangMuGuanLianBiao',
+      apiUrl:
+          '${FenBaoShangYuXiangMuGuanLianBiaoGroup.baseUrl}/deleteFenBaoShangYuXiangMuGuanLianBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...FenBaoShangYuXiangMuGuanLianBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateFenBaoShangYuXiangMuGuanLianBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateFenBaoShangYuXiangMuGuanLianBiao',
+      apiUrl:
+          '${FenBaoShangYuXiangMuGuanLianBiaoGroup.baseUrl}/updateFenBaoShangYuXiangMuGuanLianBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...FenBaoShangYuXiangMuGuanLianBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End fenBaoShangYuXiangMuGuanLianBiao Group Code
+
+/// Start heTongWenJianBiao Group Code
+
+class HeTongWenJianBiaoGroup {
+  static String baseUrl = 'http://119.45.234.161:8888/heTongWenJianBiao';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static GetHeTongWenJianBiaoListCall getHeTongWenJianBiaoListCall =
+      GetHeTongWenJianBiaoListCall();
+  static DeleteHeTongWenJianBiaoCall deleteHeTongWenJianBiaoCall =
+      DeleteHeTongWenJianBiaoCall();
+  static UpdateHeTongWenJianBiaoCall updateHeTongWenJianBiaoCall =
+      UpdateHeTongWenJianBiaoCall();
+}
+
+class GetHeTongWenJianBiaoListCall {
+  Future<ApiCallResponse> call({
+    int? page,
+    int? pageSize,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getHeTongWenJianBiaoList',
+      apiUrl: '${HeTongWenJianBiaoGroup.baseUrl}/getHeTongWenJianBiaoList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...HeTongWenJianBiaoGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class DeleteHeTongWenJianBiaoCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    final body = '{"ID": $id}';
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteHeTongWenJianBiao',
+      apiUrl: '${HeTongWenJianBiaoGroup.baseUrl}/deleteHeTongWenJianBiao',
+      callType: ApiCallType.DELETE,
+      headers: {
+        ...HeTongWenJianBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateHeTongWenJianBiaoCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateHeTongWenJianBiao',
+      apiUrl: '${HeTongWenJianBiaoGroup.baseUrl}/updateHeTongWenJianBiao',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...HeTongWenJianBiaoGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End heTongWenJianBiao Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -25,3 +25,4 @@ export '/zheng_shu_jie_chu_ji_l/zheng_shu_jie_chu_ji_l_widget.dart'
 export '/dictionary/dictionary_widget.dart' show DictionaryWidget;
 export '/dictionary_detail/dictionary_detail_widget.dart'
     show DictionaryDetailWidget;
+export '/xiang_mu_biao/xiang_mu_biao_widget.dart' show XiangMuBiaoWidget;

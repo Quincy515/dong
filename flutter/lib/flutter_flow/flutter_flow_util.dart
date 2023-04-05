@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -28,6 +29,21 @@ export 'nav/nav.dart';
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;
+
+String dateTimeRfc3339({DateTime? dateTime}) {
+  Timestamp timestamp = Timestamp.now();
+
+  if (dateTime != null) {
+    timestamp = Timestamp.fromDate(dateTime);
+  }
+  print('>>>timestamp: ${timestamp.millisecondsSinceEpoch}');
+  var formattedDate = DateTime.fromMillisecondsSinceEpoch(
+      timestamp.millisecondsSinceEpoch,
+      isUtc: true);
+  print('>>>formattedDate: $formattedDate');
+
+  return formattedDate.toIso8601String();
+}
 
 String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
   if (dateTime == null) {

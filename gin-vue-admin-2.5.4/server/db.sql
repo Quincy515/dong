@@ -269,7 +269,8 @@ create table `dong`.xiang_mu_biao (
   `jie_suan_zhuang_tai` INT NULL COMMENT '结算状态 1.未结算 2.结算完成',
   `xiang_mu_zhuang_tai` INT NULL COMMENT '项目状态 1.建设中 2.未完成 3.竣工',
   `xiang_mu_jing_li` INT NULL COMMENT '项目经理',
-  `xiang_mu_zhu_guan` INT NULL COMMENT '项目主管'
+  `xiang_mu_zhu_guan` INT NULL COMMENT '项目主管',
+  `bei_zhu` TEXT NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '项目表';
 -- 2. 项目施工表
 create table `dong`.xiang_mu_shi_gong_biao (
@@ -281,9 +282,9 @@ create table `dong`.xiang_mu_shi_gong_biao (
   `ji_hua_tian_shu` INT NULL comment '计划天数',
   `zhan_zong_gong_zuo_liang_bai_fen_bi` FLOAT NULL comment '占总工作量百分比',
   `wan_cheng_bi` FLOAT NULL comment '完成比',
-  `bei_zhu` TEXT NULL comment '备注',
   `shun_xu` INT NULL comment '顺序',
   `zhuang_tai` INT NULL comment '状态',
+  `bei_zhu` TEXT NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '项目施工表';
 -- 3. 合同文件表
 create table `dong`.he_tong_wen_jian_biao (
@@ -327,20 +328,22 @@ create table `dong`.fen_bao_shang_biao (
   `zhang_hao` VARCHAR(100) NULL comment '账号',
   `tian_jia_shi_jian` DATETIME NULL comment '添加时间',
   `tian_jia_ren` INT NULL comment '添加人',
-  `zhuang_tai` INT NULL comment '状态'
+  `zhuang_tai` INT NULL comment '状态',
+  `bei_zhu` TEXT NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '分包商表';
 -- 5. 分包商与项目关联表
-create table `dong`.fen_bao_shang_biao (
+create table `dong`.fen_bao_shang_yu_xiang_mu_guan_lian_biao (
   `group` varchar(100) NULL comment '所属',
-  `xiang_mu_id` VARCHAR(100) NULL comment '项目ID',
-  `fen_bao_shang_id` VARCHAR(100) NULL comment '分包商ID',
+  `xiang_mu_id` INT NULL comment '项目ID',
+  `fen_bao_shang_id` INT NULL comment '分包商ID',
   `he_tong_bian_hao` VARCHAR(100) NULL comment '合同编号',
   `he_tong_ming_cheng` VARCHAR(100) NULL comment '合同名称',
-  `jin_chang_ri_qi` VARCHAR(100) NULL comment '进场日期',
-  `tui_chang_ri_qi` VARCHAR(100) NULL comment '退场日期',
+  `jin_chang_ri_qi` DATETIME NULL comment '进场日期',
+  `tui_chang_ri_qi` DATETIME NULL comment '退场日期',
   `wei_tuo_ren` VARCHAR(100) NULL comment '委托人',
   `wei_tuo_ren_shou_ji` VARCHAR(100) NULL comment '委托人手机',
-  `zhuang_tai` VARCHAR(100) NULL comment '状态'
+  `zhuang_tai` INT NULL comment '状态',
+  `bei_zhu` TEXT NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '分包商与项目关联表';
 -- 6. 工程班组表
 create table `dong`.gong_cheng_ban_zu_biao (
@@ -471,10 +474,11 @@ create table `dong`.gong_ying_shang_biao (
   `kai_hu_hang` VARCHAR(100) NULL comment '开户行',
   `tian_jia_ren` INT NULL comment '添加人',
   `tian_jia_ri_qi` DATETIME NULL comment '添加日期',
-  `zhuang_tai` INT NULL comment '状态'
+  `zhuang_tai` INT NULL comment '状态',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '供应商表';
 -- 15. 项目主材表
-create table `dong`.xiang_mu_ming_cheng (
+create table `dong`.xiang_mu_zhu_cai_biao (
   `group` varchar(100) NULL comment '所属',
   `xiang_mu_ming_cheng` INT NULL comment '项目名称',
   `cai_liao_ming_cheng` Varchar(50) NULL comment '材料名称',
@@ -484,7 +488,8 @@ create table `dong`.xiang_mu_ming_cheng (
   `dan_jia` Float NULL comment '单价',
   `xian_hang_jia_ge` Decimal(10, 2) NULL comment '现行价格',
   `jia_cha_he_ji` Decimal(10, 2) NULL comment '价差合计',
-  `he_ji` Decimal(10, 2) NULL comment '合计'
+  `he_ji` Decimal(10, 2) NULL comment '合计',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '项目主材表';
 -- 16. 采购计划表
 create table `dong`.cai_gou_ji_hua_biao (
@@ -495,29 +500,32 @@ create table `dong`.cai_gou_ji_hua_biao (
   `tian_jia_ri_qi` Datetime NULL comment '添加日期',
   `zhuang_tai` INT NULL comment '状态',
   `lei_ji_cai_gou_jin_e` Decimal(10, 2) NULL comment '累计采购金额',
-  `shi_ji_zhi_fu_jin_e` Decimal(10, 2) NULL comment '实际支付金额'
+  `shi_ji_zhi_fu_jin_e` Decimal(10, 2) NULL comment '实际支付金额',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '采购计划表';
 -- 17. 采购计划明细表
 create table `dong`.cai_gou_ji_hua_ming_xi_biao (
   `group` varchar(100) NULL comment '所属',
   `cai_liao_id` int NULL comment '材料ID',
-  `cai_gou_ji hua_id` int NULL comment '采购计划ID',
+  `cai_gou_ji_hua_id` int NULL comment '采购计划ID',
   `gong_ying_shang_id` int NULL comment '供应商ID',
   `dan_jia` Varchar(10) NULL comment '单价',
   `cai_gou_liang` Float NULL comment '采购量',
   `zong_jia` Decimal(10, 2) NULL comment '总价',
   `ru_ku_liang` Float NULL comment '入库量',
-  `zhuang_tai` int NULL comment '状态'
+  `zhuang_tai` int NULL comment '状态',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '采购计划明细表';
 -- 18. 出入库单据表
 create table `dong`.chu_ru_ku_dan_ju_biao (
   `group` varchar(100) NULL comment '所属',
   `xiang_mu_id` INT NULL ccomment '项目ID',
   `cai_gou_ji_hua_id` INT NULL ccomment '采购计划ID',
-  `lei_xing` INT NULL ccomment '类型 1. 入库 2. 出库',
+  `chu_ru_ku_dan_ju_lei_xing` INT NULL ccomment '类型 1. 入库 2. 出库',
   `tian_jia_ren` INT NULL ccomment '添加人',
   `tian_jia_ri_qi` Datetime NULL ccomment '添加日期',
-  `zhuang_tai` INT NULL ccomment '状态'
+  `zhuang_tai` INT NULL ccomment '状态',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '出入库单据表';
 -- 19. 出入库明细表
 create table `dong`.chu_ru_ku_ming_xi_biao (
@@ -529,30 +537,32 @@ create table `dong`.chu_ru_ku_ming_xi_biao (
   `zong_jia` Decimal(10, 2) NULL comment '总价',
   `ru_ku_liang` Float NULL comment '入库量',
   `shi_hou_ku_cun_liang` Float NULL comment '事后库存量',
-  `zhuang_tai` int NULL comment '状态'
+  `zhuang_tai` int NULL comment '状态',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '出入库明细表';
 -- 20. 设备租赁表
 create table `dong`.she_bei_zu_lin_biao (
   `group` varchar(100) NULL comment '所属',
   `xiang_mu_id` Int NULL comment '项目ID',
-  `zu_lin_ming_cheng` Int NULL comment '租赁名称',
+  `zu_lin_id` Int NULL comment '租赁ID',
   `zu_lin_yong_tu` Varchar(500) NULL comment '租赁用途',
   `tian_jia_ren` Int NULL comment '添加人',
   `tian_jia_ri_qi` Datetime NULL comment '添加日期',
-  `zhuang_tai` Int NULL comment '状态'
+  `zhuang_tai` Int NULL comment '状态',
+  `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '设备租赁表';
 -- 21. 设备明细表
 create table `dong`.she_bei_ming_xi_biao (
   `group` varchar(100) NULL comment '所属',
-  `she_bei_ming_cheng` int NULL comment '设备名称',
+  `she_bei_id` int NULL comment '设备id',
   `zu_lin_dan_ju_id` int NULL comment '租赁单据ID',
   `dan_jia` Float NULL comment '单价',
-  `zu_lin_shu_liang` Float NULL comment '租赁数量',
-  `ji_hua_zu_lin_ri_qi` Decimal(10, 2) NULL comment '计划租赁日期',
-  `ji_hua_tui_zu_ri_qi` Float NULL comment '计划退租日期',
-  `shi_ji_zu_lin_ri_qi` Float NULL comment '实际租赁日期',
+  `zu_lin_shu_liang` int NULL comment '租赁数量',
+  `ji_hua_zu_lin_ri_qi` Datetime NULL comment '计划租赁日期',
+  `ji_hua_tui_zu_ri_qi` Datetime NULL comment '计划退租日期',
+  `shi_ji_zu_lin_ri_qi` Datetime NULL comment '实际租赁日期',
   `shi_ji_tui_zu_ri_qi` Datetime NULL comment '实际退租日期',
-  `zu_lin_tian_shu` Datetime NULL comment '租赁天数',
+  `zu_lin_tian_shu` int NULL comment '租赁天数',
   `zhuang_tai` int NULL comment '状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '设备明细表';
 -- 22. 施工进度表
@@ -572,9 +582,9 @@ create table `dong`.shi_gong_jin_du_biao (
 -- 23. 文件资料节点表
 create table `dong`.wen_jian_zi_liao_jie_dian_biao (
   `group` varchar(100) NULL comment '所属',
-  `xiang_mu_ming_cheng` Int NULL comment '项目名称',
+  `xiang_mu_id` Int NULL comment '项目ID',
   `wen_jian_jia_ming_cheng` Varchar(200) NULL comment '文件夹名称',
-  `fu_jie_dian` Int NULL comment '父节点多层级迭代寻祖',
+  `fu_jie_dian_id` Int NULL comment '父节点多层级迭代寻祖',
   `tian_jia_shi_jian` Datetime NULL comment '添加时间',
   `tian_jia_ren` Int NULL comment '添加人',
   `shi_fou_cun_dang` Int NULL comment '是否存档-存档后不可以变更文件',
@@ -585,8 +595,9 @@ create table `dong`.wen_jian_zi_liao_jie_dian_biao (
 -- 24. 文件资料表
 create table `dong`.wen_jian_zi_liao_biao (
   `group` varchar(100) NULL comment '所属',
-  `wen_jian_ming_cheng` Int NULL comment '文件名称',
-  `jie_dian_i` Int NULL comment '节点ID只保存最近的节点',
+  `wen_jian_id` Int NULL comment '文件id',
+  `wen_jian_ming_cheng` VARCHAR(100) NULL comment '文件名称',
+  `jie_dian_id` Int NULL comment '节点ID只保存最近的节点',
   `shang_chuan_ren` Int NULL comment '上传人',
   `shang_chuan_ri_qi` Datetime NULL comment '上传日期',
   `shi_fou_shen_he` Int NULL comment '是否审核',

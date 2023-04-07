@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/flipped-aurora/gin-vue-admin/server/router/cai_wu_bu"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/example"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/gong_cheng_bu"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/hr"
@@ -14,6 +15,7 @@ type RouterGroup struct {
 	Hr            hr.RouterGroup
 	Jing_ying_bu  jing_ying_bu.RouterGroup
 	Gong_cheng_bu gong_cheng_bu.RouterGroup
+	Cai_wu_bu     cai_wu_bu.RouterGroup
 }
 
 var RouterGroupApp = new(RouterGroup)

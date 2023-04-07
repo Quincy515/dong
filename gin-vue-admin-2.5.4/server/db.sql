@@ -519,12 +519,12 @@ create table `dong`.cai_gou_ji_hua_ming_xi_biao (
 -- 18. 出入库单据表
 create table `dong`.chu_ru_ku_dan_ju_biao (
   `group` varchar(100) NULL comment '所属',
-  `xiang_mu_id` INT NULL ccomment '项目ID',
-  `cai_gou_ji_hua_id` INT NULL ccomment '采购计划ID',
-  `chu_ru_ku_dan_ju_lei_xing` INT NULL ccomment '类型 1. 入库 2. 出库',
-  `tian_jia_ren` INT NULL ccomment '添加人',
-  `tian_jia_ri_qi` Datetime NULL ccomment '添加日期',
-  `zhuang_tai` INT NULL ccomment '状态',
+  `xiang_mu_id` INT NULL comment '项目ID',
+  `cai_gou_ji_hua_id` INT NULL comment '采购计划ID',
+  `chu_ru_ku_dan_ju_lei_xing` INT NULL comment '类型 1. 入库 2. 出库',
+  `tian_jia_ren` INT NULL comment '添加人',
+  `tian_jia_ri_qi` Datetime NULL comment '添加日期',
+  `zhuang_tai` INT NULL comment '状态',
   `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '出入库单据表';
 -- 19. 出入库明细表
@@ -616,12 +616,13 @@ create table `dong`.nei_bu_bao_xiao_biao (
   `shou_ci_bao_xiao_id` Int NULL comment '首次报销ID-再次申请时关联的ID',
   `bao_xiao_ren_yuan` Int NULL comment '报销人员',
   `bao_xiao_shi_xiang` Int NULL comment '报销事项',
+  `bao_xiao_nei_rong` Text NULL comment '报销内容',
   `bao_xiao_jin_e` Decimal(10, 2) NULL comment '报销金额',
   `piao_ju_di_zhi` Varchar(500) NULL comment '票据地址-可多图片上传',
   `fei_yong_fa_sheng_ri_qi` Datetime NULL comment '费用发生日期',
   `gong_si_ming_cheng` Int NULL comment '公司名称',
   `bao_xiao_bu_men` Int NULL comment '报销部门',
-  `lei_xing` Int NULL comment '类型 1. 内部报销 2. 项目经理报销',
+  `bao_xiao_lei_xing` Int NULL comment '报销类型 1. 内部报销 2. 项目经理报销',
   `bei_zhu_shuo_ming` Varchar(200) NULL comment '备注说明',
   `shen_qing_ri_qi` Datetime NULL comment '申请日期',
   `zhuang_tai` Int NULL comment '状态',
@@ -635,6 +636,7 @@ create table `dong`.wai_bu_fei_yong_qing_kuan_biao (
   `xiang_mu_ming_cheng` Int NULL comment '项目名称',
   `bao_xiao_ren_yuan` Int NULL comment '报销人员',
   `bao_xiao_shi_xiang` Int NULL comment '报销事项',
+  `bao_xiao_nei_rong` Text NULL comment '报销内容',
   `bao_xiao_jin_e` Decimal(10, 2) NULL comment '报销金额',
   `shi_fu_jin_e` Decimal(10, 2) NULL comment '实付金额',
   `bao_xiao_lei_xing` Int NULL comment '报销类型',
@@ -647,6 +649,7 @@ create table `dong`.wai_bu_fei_yong_qing_kuan_biao (
   `bei_zhu_shuo_ming` Varchar(200) NULL comment '备注说明',
   `shen_qing_ri_qi` Datetime NULL comment '申请日期',
   `zhuang_tai` Int NULL comment '状态',
+  `bei_zhu` TEXT NULL comment '备注',
   `hui_dan_di_zhi` Varchar(500) comment '回单地址-可多图片上传NULL'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '外部费用请款表（应付款表）';
 -- 3. 应收款表
@@ -677,5 +680,6 @@ create table `dong`.ying_shou_kuan_biao (
   `bei_zhu_shuo_ming` Varchar(500) NULL comment '备注说明',
   `shen_qing_ri_qi` Datetime NULL comment '申请日期',
   `zhuang_tai` Int NULL comment '状态',
+  `bei_zhu` TEXT NULL comment '备注',
   `hui_dan_di_zhi` Varchar(500) 可多图片上传 NULL comment '回单地址'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '应收款表';

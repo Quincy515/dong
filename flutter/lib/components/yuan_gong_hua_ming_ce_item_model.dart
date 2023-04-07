@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 class YuanGongHuaMingCeItemModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this component.
 
+  bool unfold = false;
   final formKey = GlobalKey<FormState>();
   // State field(s) for group widget.
   TextEditingController? groupController;

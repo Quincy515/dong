@@ -1440,11 +1440,6 @@ class _HeTongWenJianItemWidgetState extends State<HeTongWenJianItemWidget> {
                           ),
                           child: TextFormField(
                             controller: _model.shouFuKuanTiaoJianController,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.shouFuKuanTiaoJianController',
-                              Duration(milliseconds: 2000),
-                              () => setState(() {}),
-                            ),
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context).bodyText1,
@@ -2824,7 +2819,7 @@ class _HeTongWenJianItemWidgetState extends State<HeTongWenJianItemWidget> {
   "kaiPiaoDanWei": "${_model.kaiPiaoDanWeiController.text}",
   "qianDingRen": ${_model.qianDingRenValue},
   "qianDingRiQi": "${dateTimeRfc3339(dateTime: _model.datePicked1)}",
-  "shouFuKuanTiaoJian": ${_model.shouFuKuanTiaoJianController.text} 收入款条件",
+  "shouFuKuanTiaoJian": "${_model.shouFuKuanTiaoJianController.text}",
   "shouKuanZhangHao": "${_model.shouKuanZhangHaoController.text}",
   "tianJiaRen": ${_model.tianJiaRenValue},
   "tianJiaShiJian": "${dateTimeRfc3339(dateTime: _model.datePicked2)}",

@@ -5,10 +5,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../cai_gou_ji_hua_biao/cai_gou_ji_hua_biao_widget.dart';
+import '../../cai_gou_ji_hua_ming_xi_biao/cai_gou_ji_hua_ming_xi_biao_widget.dart';
+import '../../chu_ru_ku_dan_ju_biao/chu_ru_ku_dan_ju_biao_widget.dart';
+import '../../chu_ru_ku_ming_xi_biao/chu_ru_ku_ming_xi_biao_widget.dart';
 import '../../fen_bao_shang_biao/fen_bao_shang_biao_widget.dart';
 import '../../fen_bao_shang_yu_xiang_mu_guan_lian_biao/fen_bao_shang_yu_xiang_mu_guan_lian_biao_widget.dart';
+import '../../gong_ying_shang_biao/gong_ying_shang_biao_widget.dart';
 import '../../he_tong_wen_jian_biao/he_tong_wen_jian_biao_widget.dart';
+import '../../she_bei_ming_xi_biao/she_bei_ming_xi_biao_widget.dart';
+import '../../she_bei_zu_lin_biao/she_bei_zu_lin_biao_widget.dart';
+import '../../shi_gong_jin_du_biao/shi_gong_jin_du_biao_widget.dart';
+import '../../wen_jian_zi_liao_biao/wen_jian_zi_liao_biao_widget.dart';
+import '../../wen_jian_zi_liao_jie_dian_biao/wen_jian_zi_liao_jie_dian_biao_widget.dart';
 import '../../xiang_mu_shi_gong_biao/xiang_mu_shi_gong_biao_widget.dart';
+import '../../xiang_mu_zhu_cai_biao/xiang_mu_zhu_cai_biao_widget.dart';
 import '../flutter_flow_theme.dart';
 
 import '../../index.dart';
@@ -155,6 +166,61 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'fenBaoShangYuXiangMuGuanLianBiao',
               builder: (context, params) =>
                   FenBaoShangYuXiangMuGuanLianBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'gongYingShangBiao',
+              path: 'gongYingShangBiao',
+              builder: (context, params) => GongYingShangBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'xiangMuZhuCaiBiao',
+              path: 'xiangMuZhuCaiBiao',
+              builder: (context, params) => XiangMuZhuCaiBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'caiGouJiHuaBiao',
+              path: 'caiGouJiHuaBiao',
+              builder: (context, params) => CaiGouJiHuaBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'caiGouJiHuaMingXiBiao',
+              path: 'caiGouJiHuaMingXiBiao',
+              builder: (context, params) => CaiGouJiHuaMingXiBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'chuRuKuMingXiBiao',
+              path: 'chuRuKuMingXiBiao',
+              builder: (context, params) => ChuRuKuMingXiBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'chuRuKuDanJuBiao',
+              path: 'chuRuKuDanJuBiao',
+              builder: (context, params) => ChuRuKuDanJuBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'sheBeiZuLinBiao',
+              path: 'sheBeiZuLinBiao',
+              builder: (context, params) => SheBeiZuLinBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'sheBeiMingXiBiao',
+              path: 'sheBeiMingXiBiao',
+              builder: (context, params) => SheBeiMingXiBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'shiGongJinDuBiao',
+              path: 'shiGongJinDuBiao',
+              builder: (context, params) => ShiGongJinDuBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'wenJianZiLiaoJieDianBiao',
+              path: 'wenJianZiLiaoJieDianBiao',
+              builder: (context, params) => WenJianZiLiaoJieDianBiaoWidget(),
+            ),
+            FFRoute(
+              name: 'wenJianZiLiaoBiao',
+              path: 'wenJianZiLiaoBiao',
+              builder: (context, params) => WenJianZiLiaoBiaoWidget(),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

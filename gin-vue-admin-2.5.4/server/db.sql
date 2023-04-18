@@ -175,12 +175,16 @@ create table `dong`.hui_yuan_guan_li (
   `group` varchar(100) NULL comment '所属',
   `hui_yuan_ming_cheng` varchar(200) NULL comment '会员名称',
   `ji_bie` varchar(50) NULL comment '级别',
+  `hui_yuan_lei_bie` INT NULL comment '会员类别',
+  `hui_yuan_ji_bie` INT NULL comment '会员级别',
   `hui_fei` varchar(50) NULL comment '会费',
   `kai_shi_you_xiao_qi` datetime NULL comment '开始有效期',
   `jie_shu_you_xiao_qi` datetime NULL comment '结束有效期',
   `ru_hui_lian_xi` varchar(20) NULL comment '入会联系',
   `wang_zhi` varchar(200) NULL comment '网址',
   `jiao_fei_shi_jian` datetime NULL comment '缴费时间',
+  `guo_qi_shi_jian` datetime NULL comment '过期时间',
+  `guo_qi_ti_xing` int NULL comment '过期提醒',
   `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '会员管理';
 -- 6. 公司账号密码
@@ -194,15 +198,20 @@ create table `dong`.gong_si_zhang_hao_mi_ma (
   `kai_shi_you_xiao_qi` datetime NULL comment '开始有效期',
   `jie_shu_you_xiao_qi` datetime NULL comment '结束有效期',
   `nian_fei` varchar(50) NULL comment '年费',
+  `zhao_hui_mi_ma_ji_lu` varchar(200) NULL comment '找回密码记录',
   `bei_zhu` text NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '公司账号密码';
 -- 7. 公章登记
 create table `dong`.gong_zhang_deng_ji (
   `group` varchar(100) NULL comment '所属',
   `gong_zhang_ming_cheng` varchar(100) NULL comment '公章名称',
+  `gong_zhang_ming_cheng_opt` int NULL comment '公章名称选择',
   `shi_xiang` varchar(100) NULL comment '事项',
   `shen_qing_ren` varchar(100) NULL comment '申请人',
+  `shen_qing_ren_id` int NULL comment '申请人id',
   `shen_qing_shi_jian` DATETIME NULL comment '申请时间',
+  `suo_shu_bu_men_shen_he` int NULL comment '所属部门审核',
+  `shen_he_shi_jian` DATETIME NULL comment '审核时间',
   `jing_shou_ren` varchar(100) NULL comment '经手人',
   `jing_shou_shi_jian` DATETIME NULL comment '经手时间',
   `shu_liang` INT DEFAULT 1 NOT NULL comment '数量',
@@ -213,12 +222,15 @@ create table `dong`.gong_zhang_deng_ji (
 create table `dong`.zheng_shu_biao (
   `group` varchar(100) NULL comment '所属',
   `zheng_shu_ming_cheng` varchar(100) NULL comment '证书名称',
+  `zheng_shu_ming_cheng_opt` int NULL comment '证书名称选择',
   `zheng_shu_bian_hao` varchar(100) NULL comment '证书编号',
   `zheng_shu_lei_bie` INT NULL comment '证书类别',
   `suo_you_ren_xing_ming` varchar(100) NULL comment '所有人姓名',
   `shen_fen_zheng_hao` varchar(100) NULL comment '身份证号',
   `shou_ji_hao_ma` varchar(100) NULL comment '手机号码',
   `fa_zheng_bu_men` varchar(100) NULL comment '发证部门',
+  `she_bao_cha_xun_zhang_hao` varchar(100) NULL comment '社保查询账号',
+  `she_bao_cha_xun_mi_ma` varchar(100) NULL comment '社保查询密码',
   `zheng_shu_suo_shu_cheng_shi` INT NULL comment '证书所属城市',
   `zheng_shu_zhuang_tai` INT NULL comment '证书状态',
   `zheng_shu_dao_qi_ri_qi` DATETIME NULL comment '证书到期日期',
@@ -608,6 +620,18 @@ create table `dong`.wen_jian_zi_liao_biao (
   `zhuang_tai` Int NULL comment '状态',
   `bei_zhu` TEXT NULL comment '备注'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '文件资料表';
+-- 消息通知的数据库设计
+create table `dong`.xiao_xi_tong_zhi (
+  `group` varchar(100) NULL comment '所属',
+  `type` varchar(100) NULL comment '类型',
+  `sender_id` int NULL comment '发送方 id',
+  `receiver_id` int NULL comment '接收方 id',
+  `title` varchar(100) NULL comment '标题',
+  `content` text NULL comment '内容',
+  `status` int DEFAULT 0 comment '状态 0.未读 1.已读',
+  `redirect_url` varchar(100) NULL comment '跳转地址',
+  `bei_zhu` TEXT NULL comment '备注'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci comment '消息通知表';
 -- 财务部
 -- 1. 内部报销表
 create table `dong`.nei_bu_bao_xiao_biao (

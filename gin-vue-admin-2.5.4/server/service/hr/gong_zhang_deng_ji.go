@@ -71,9 +71,6 @@ func (gongZhangDengJiService *GongZhangDengJiService) GetGongZhangDengJiInfoList
 	if info.Group != "" {
 		db = db.Where("group = ?", info.Group)
 	}
-	if info.ShenQingRen != "" {
-		db = db.Where("shen_qing_ren LIKE ?", "%"+info.ShenQingRen+"%")
-	}
 	if info.ShiXiang != "" {
 		db = db.Where("shi_xiang LIKE ?", "%"+info.ShiXiang+"%")
 	}

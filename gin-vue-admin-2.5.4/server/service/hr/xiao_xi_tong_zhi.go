@@ -5,6 +5,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/hr"
 	hrReq "github.com/flipped-aurora/gin-vue-admin/server/model/hr/request"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 )
 
 type XiaoXiTongZhiService struct {
@@ -47,7 +48,7 @@ func (xiaoXiTongZhiService *XiaoXiTongZhiService) GetXiaoXiTongZhi(id uint) (xia
 
 // GetXiaoXiTongZhiInfoList 分页获取XiaoXiTongZhi记录
 // Author [piexlmax](https://github.com/piexlmax)
-func (xiaoXiTongZhiService *XiaoXiTongZhiService) GetXiaoXiTongZhiInfoList(info hrReq.XiaoXiTongZhiSearch) (list []hr.XiaoXiTongZhi, total int64, err error) {
+func (xiaoXiTongZhiService *XiaoXiTongZhiService) GetXiaoXiTongZhiInfoList(info hrReq.XiaoXiTongZhiSearch) (list []interface{}, total int64, err error) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
 	// 创建db
@@ -70,6 +71,26 @@ func (xiaoXiTongZhiService *XiaoXiTongZhiService) GetXiaoXiTongZhiInfoList(info 
 	if err != nil {
 		return
 	}
-	err = db.Limit(limit).Offset(offset).Find(&xiaoXiTongZhis).Error
-	return xiaoXiTongZhis, total, err
+	err = db.Order("status ASC").Order("id DESC").Limit(limit).Offset(offset).Find(&xiaoXiTongZhis).Error
+	type resItem struct {
+		hr.XiaoXiTongZhi
+		Username string
+		Img      string
+	}
+
+	for _, v := range xiaoXiTongZhis {
+		var resItem = resItem{
+			XiaoXiTongZhi: v,
+		}
+		var user system.SysUser
+		err = global.GVA_DB.Where("`id` = ?", *v.SenderId).First(&user).Error
+		if err != nil {
+			resItem.Username = "Unknown"
+			resItem.Img = "https://qmplusimg.henrongyi.top/1576554439myAvatar.png"
+		}
+		resItem.Username = user.Username
+		resItem.Img = user.HeaderImg
+		list = append(list, resItem)
+	}
+	return list, total, err
 }

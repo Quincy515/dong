@@ -1,5 +1,6 @@
+import '../components/hui_yuan_guan_li_item/hui_yuan_guan_li_item_widget.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/hui_yuan_guan_li_item_widget.dart';
+// import '/components/hui_yuan_guan_li_item_widget.dart';
 import '/components/page_search_and_next_widget.dart';
 import '/components/web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -162,7 +163,22 @@ class _HuiYuanGuanLiWidgetState extends State<HuiYuanGuanLiWidget> {
                               model: _model.huiYuanGuanLiItemModel1,
                               updateCallback: () => setState(() {}),
                               child: HuiYuanGuanLiItemWidget(
-                                item: null,
+                                item: jsonDecode('''
+{
+  "beiZhu": "",
+  "group": "",
+  "huiFei": "",
+  "jiaoFeiShiJian": "${DateTime.now()}",
+  "jieShuYouXiaoQi": "${DateTime.now()}",
+  "kaiShiYouXiaoQi": "${DateTime.now()}",
+  "ruHuiLianXi": "",
+  "wangZhi": "",
+  "huiYuanLeiBie": 1,
+  "huiYuanJiBie": 1,
+  "guoQiTiXing": 0,
+  "guoQiShiJian": "${DateTime.now()}"
+}
+  '''),
                               ),
                             ),
                           if (!_model.switchValue!)

@@ -1,5 +1,5 @@
+import '../components/gong_si_zhang_hao_mi_ma_item/gong_si_zhang_hao_mi_ma_item_widget.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/gong_si_zhang_hao_mi_ma_item_widget.dart';
 import '/components/page_search_and_next_widget.dart';
 import '/components/web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -163,7 +163,21 @@ class _GongSiZhangHaoMiMaWidgetState extends State<GongSiZhangHaoMiMaWidget> {
                               model: _model.gongSiZhangHaoMiMaItemModel1,
                               updateCallback: () => setState(() {}),
                               child: GongSiZhangHaoMiMaItemWidget(
-                                item: null,
+                                item: jsonDecode('''
+{
+  "beiZhu": "",
+  "group": "",
+  "jieShuYouXiaoQi": "${DateTime.now()}",
+  "kaiShiYouXiaoQi": "${DateTime.now()}",
+  "lianJie": "",
+  "miMa": "",
+  "nianFei": "",
+  "xiTongMingCheng": "",
+  "yongHuMing": "",
+  "yongTu": "",
+  "zhaoHuiMiMaJiLu": ""
+}
+  '''),
                               ),
                             ),
                           if (!_model.switchValue!)

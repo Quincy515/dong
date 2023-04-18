@@ -1,7 +1,7 @@
+import '../components/page_search_and_next_widget.dart';
+import '../components/web_nav_widget.dart';
+import '../components/zheng_shu_biao_item/zheng_shu_biao_item_widget.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/page_search_and_next_widget.dart';
-import '/components/web_nav_widget.dart';
-import '/components/zheng_shu_biao_item_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +40,12 @@ class _ZhengShuBiaoWidgetState extends State<ZhengShuBiaoWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -88,7 +88,7 @@ class _ZhengShuBiaoWidgetState extends State<ZhengShuBiaoWidget> {
                                 Text(
                                   '证书表',
                                   style: FlutterFlowTheme.of(context)
-                                      .title1
+                                      .bodyText2
                                       .override(
                                         fontFamily: 'Poppins',
                                         fontWeight: FontWeight.normal,
@@ -161,10 +161,29 @@ class _ZhengShuBiaoWidgetState extends State<ZhengShuBiaoWidget> {
                             wrapWithModel(
                               model: _model.zhengShuBiaoItemModel1,
                               updateCallback: () => setState(() {}),
-                              child: ZhengShuBiaoItemWidget(item: jsonDecode('''
+                              child: ZhengShuBiaoItemWidget(
+                                item: jsonDecode('''
 {
-  "shiFouJieChu": false
-}''')),
+  "group": "",
+  "zhengShuMingCheng": "",
+  "zhengShuMingChengOpt": 1,
+  "zhengShuBianHao": "",
+  "zhengShuLeiBie": 1,
+  "suoYouRenXingMing": "",
+  "shenFenZhengHao": "",
+  "shouJiHaoMa": "",
+  "faZhengBuMen": "",
+  "zhengShuSuoShuChengShi": 1,
+  "zhengShuZhuangTai": 1,
+  "zhengShuDaoQiRiQi": "${DateTime.now()}",
+  "zhengShuNianShiYongFei": "",
+  "zhiFuRiQi": "${DateTime.now()}",
+  "shiFouJieChu": false,
+  "tianJiaRen": ${FFAppState().userID},
+  "beiZhu": ""
+}
+  '''),
+                              ),
                             ),
                           if (!_model.switchValue!)
                             FutureBuilder<ApiCallResponse>(

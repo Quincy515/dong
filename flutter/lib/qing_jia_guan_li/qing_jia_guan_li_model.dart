@@ -1,14 +1,9 @@
-// ignore_for_file: unused_import
-
+import '../components/page_search_and_next_model.dart';
+import '../components/qing_jia_guan_li_item_model.dart';
+import '../components/web_nav_model.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/page_search_and_next_widget.dart';
-import '/components/qing_jia_guan_li_item_widget.dart';
-import '/components/web_nav_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class QingJiaGuanLiModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
@@ -23,6 +18,8 @@ class QingJiaGuanLiModel extends FlutterFlowModel {
   late QingJiaGuanLiItemModel qingJiaGuanLiItemModel1;
   // Model for pageSearchAndNext component.
   late PageSearchAndNextModel pageSearchAndNextModel;
+  // Model for qingJiaGuanLiItem component.
+  late QingJiaGuanLiItemModel qingJiaGuanLiItemModel3;
 
   /// Initialization and disposal methods.
 
@@ -32,12 +29,15 @@ class QingJiaGuanLiModel extends FlutterFlowModel {
         createModel(context, () => QingJiaGuanLiItemModel());
     pageSearchAndNextModel =
         createModel(context, () => PageSearchAndNextModel());
+    qingJiaGuanLiItemModel3 =
+        createModel(context, () => QingJiaGuanLiItemModel());
   }
 
   void dispose() {
     webNavModel.dispose();
     qingJiaGuanLiItemModel1.dispose();
     pageSearchAndNextModel.dispose();
+    qingJiaGuanLiItemModel3.dispose();
   }
 
   /// Additional helper methods are added here.

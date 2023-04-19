@@ -227,7 +227,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       content:
                                                           "${FFAppState().username}申请${leiXingOptionLab[_model.leiXingValue! - 1]}${_model.tianShuController.text}天,从 ${dateTimeFormat('yMd', _model.datePicked1)} 到 ${dateTimeFormat('yMd', _model.datePicked2)}, ${_model.shiYouController.text}",
                                                       redirectUrl:
-                                                          "qingJiaGuanLi",
+                                                          "qingJiaGuanLi/${FileGroup.updateSysDictionaryDetailCall.id(
+                                                                (_model.updateRes
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString()}",
                                                       type: "请假",
                                                       group: "dong",
                                                       status: 0);
@@ -238,14 +242,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                FileGroup
-                                                    .updateSysDictionaryDetailCall
-                                                    .msg(
+                                                "已经提交申请${FileGroup.updateSysDictionaryDetailCall.msg(
                                                       (_model.updateRes
                                                               ?.jsonBody ??
                                                           ''),
-                                                    )
-                                                    .toString(),
+                                                    ).toString()}",
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -1244,11 +1245,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 r'''$.redirectUrl''',
                                                               ) !=
                                                               null) {
-                                                            context.pushNamed(
+                                                            String id =
                                                                 getJsonField(
                                                               listItem,
                                                               r'''$.redirectUrl''',
-                                                            ).toString());
+                                                            ).split('/')[1];
+                                                            context.pushNamed(
+                                                              'qingJiaGuanLi',
+                                                              queryParams: {
+                                                                'id': id,
+                                                                'detail':
+                                                                    serializeParam(
+                                                                  true,
+                                                                  ParamType
+                                                                      .bool,
+                                                                ),
+                                                                'xiaoXiId':
+                                                                    serializeParam(
+                                                                  getJsonField(
+                                                                    listItem,
+                                                                    r'''$.ID''',
+                                                                  ).toString(),
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
                                                           } else {
                                                             ScaffoldMessenger
                                                                     .of(context)

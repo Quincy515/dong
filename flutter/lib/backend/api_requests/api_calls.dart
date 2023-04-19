@@ -580,6 +580,10 @@ ${item}''';
         response,
         r'''$.msg''',
       );
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.data.res.ID''',
+      );
 }
 
 class DeleteSysDictionaryDetailCall {
@@ -875,6 +879,7 @@ class BanGongShiGroup {
       UpdateKaoQinTongJiCall();
   static GetQingJiaGuanLiListCall getQingJiaGuanLiListCall =
       GetQingJiaGuanLiListCall();
+  static FindQingJiaGuanLiCall findQingJiaGuanLiCall = FindQingJiaGuanLiCall();
   static DeleteQingJiaGuanLiCall deleteQingJiaGuanLiCall =
       DeleteQingJiaGuanLiCall();
   static UpdateQingJiaGuanLiCall updateQingJiaGuanLiCall =
@@ -1270,6 +1275,65 @@ class GetQingJiaGuanLiListCall {
         response,
         r'''$.msg''',
       );
+}
+
+class FindQingJiaGuanLiCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'findQingJiaGuanLi',
+      apiUrl: '${BanGongShiGroup.baseUrl}/qingJiaGuanLi/findQingJiaGuanLi',
+      callType: ApiCallType.GET,
+      headers: {
+        ...BanGongShiGroup.headers,
+      },
+      params: {
+        'ID': id,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+  dynamic item(dynamic response) => getJsonField(
+        response,
+        r'''$.data.reqingJiaGuanLi''',
+      );
+  dynamic id(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.ID''');
+  dynamic beiZhu(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.beiZhu''');
+  dynamic group(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.group''');
+  dynamic jieShuRiQi(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.jieShuRiQi''');
+  dynamic jinDu(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.jinDu''');
+  dynamic kaiShiRiQi(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.kaiShiRiQi''');
+  dynamic leiXing(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.leiXing''');
+  dynamic shenHeRenId(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.shenHeRenId''');
+  dynamic shenHeShiJian(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.shenHeShiJian''');
+  dynamic shenHeXiangQing(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.shenHeXiangQing''');
+  dynamic shenHeZhuangTai(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.shenHeZhuangTai''');
+  dynamic shiYou(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.shiYou''');
+  dynamic tianShu(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.tianShu''');
+  dynamic xingMingId(dynamic response) =>
+      getJsonField(response, r'''$.data.reqingJiaGuanLi.xingMingId''');
 }
 
 class DeleteQingJiaGuanLiCall {
@@ -3695,6 +3759,7 @@ class XiaoXiGroup {
       CreateXiaoXiTongZhiCall();
   static GetXiaoXiTongZhiListCall getXiaoXiTongZhiListCall =
       GetXiaoXiTongZhiListCall();
+  static FindXiaoXiTongZhiCall findXiaoXiTongZhiCall = FindXiaoXiTongZhiCall();
   static UpdateXiaoXiTongZhiCall updateXiaoXiTongZhiCall =
       UpdateXiaoXiTongZhiCall();
 }
@@ -3789,6 +3854,49 @@ class GetXiaoXiTongZhiListCall {
   dynamic msg(dynamic response) => getJsonField(
         response,
         r'''$.msg''',
+      );
+}
+
+class FindXiaoXiTongZhiCall {
+  Future<ApiCallResponse> call({
+    int? id = 1,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'findXiaoXiTongZhi',
+      apiUrl: '${XiaoXiGroup.baseUrl}/xiaoXiTongZhi/findXiaoXiTongZhi',
+      callType: ApiCallType.GET,
+      headers: {
+        ...XiaoXiGroup.headers,
+      },
+      params: {
+        'ID': id,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+  dynamic content(dynamic response) => getJsonField(
+        response,
+        r'''$.data.rexiaoXiTongZhi.content''',
+      );
+  dynamic title(dynamic response) => getJsonField(
+        response,
+        r'''$.data.rexiaoXiTongZhi.title''',
+      );
+  dynamic type(dynamic response) => getJsonField(
+        response,
+        r'''$.data.rexiaoXiTongZhi.type''',
+      );
+  dynamic senderId(dynamic response) => getJsonField(
+        response,
+        r'''$.data.rexiaoXiTongZhi.senderId''',
       );
 }
 

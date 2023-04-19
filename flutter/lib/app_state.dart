@@ -18,6 +18,14 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _xtoken = prefs.getString('ff_xtoken') ?? _xtoken;
+    _username = prefs.getString('ff_username') ?? _username;
+    _password = prefs.getString('ff_password') ?? _password;
+    _userID = prefs.getInt('ff_userID') ?? _userID;
+    _nickName = prefs.getString('ff_nickName') ?? _nickName;
+    _headerImg = prefs.getString('ff_headerImg') ?? _headerImg;
+    _authorityName = prefs.getString('ff_authorityName') ?? _authorityName;
+    _captchaId = prefs.getString('ff_captchaId') ?? _captchaId;
+    _picPath = prefs.getString('ff_picPath') ?? _picPath;
   }
 
   void update(VoidCallback callback) {
@@ -60,6 +68,18 @@ class FFAppState extends ChangeNotifier {
   set nickName(String _value) {
     _nickName = _value;
     prefs.setString('ff_nickName', _value);
+  }
+
+  String _captchaId = '';
+  String get captchaId => _captchaId;
+  set captchaId(String _value) {
+    _captchaId = _value;
+  }
+
+  String _picPath = '';
+  String get picPath => _picPath;
+  set picPath(String _value) {
+    _picPath = _value;
   }
 
   String _headerImg = '';

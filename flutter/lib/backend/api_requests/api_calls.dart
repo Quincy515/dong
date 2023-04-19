@@ -276,6 +276,10 @@ class GetUserListCall {
         response,
         r'''$.data.list[:].headerImg''',
       );
+  dynamic authorityId(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list[:].authorityId''',
+      );
 }
 
 /// End user Group Code
@@ -3679,6 +3683,147 @@ ${item}''';
 }
 
 /// End wenJianZiLiaoBiao Group Code
+
+/// Start xiaoXi Group Code
+
+class XiaoXiGroup {
+  static String baseUrl = 'http://119.45.234.161:8888';
+  static Map<String, String> headers = {
+    'x-token': FFAppState().xtoken,
+  };
+  static CreateXiaoXiTongZhiCall createXiaoXiTongZhiCall =
+      CreateXiaoXiTongZhiCall();
+  static GetXiaoXiTongZhiListCall getXiaoXiTongZhiListCall =
+      GetXiaoXiTongZhiListCall();
+  static UpdateXiaoXiTongZhiCall updateXiaoXiTongZhiCall =
+      UpdateXiaoXiTongZhiCall();
+}
+
+class CreateXiaoXiTongZhiCall {
+  Future<ApiCallResponse> call({
+    int? senderId,
+    int? receiverId,
+    String? title = '',
+    String? content = '',
+    String? redirectUrl = '',
+    String? type = '',
+    String? group = '',
+    int? status = 0,
+  }) {
+    final body = '''
+{
+  "content": "${content}",
+  "group": "${group}",
+  "receiverId": ${receiverId},
+  "redirectUrl": "${redirectUrl}",
+  "senderId": ${senderId},
+  "status": ${status},
+  "title": "${title}",
+  "type": "${type}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'createXiaoXiTongZhi',
+      apiUrl: '${XiaoXiGroup.baseUrl}/xiaoXiTongZhi/createXiaoXiTongZhi',
+      callType: ApiCallType.POST,
+      headers: {
+        ...XiaoXiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class GetXiaoXiTongZhiListCall {
+  Future<ApiCallResponse> call({
+    int? page = 1,
+    int? pageSize = 10,
+    int? receiverId,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getXiaoXiTongZhiList',
+      apiUrl: '${XiaoXiGroup.baseUrl}/xiaoXiTongZhi/getXiaoXiTongZhiList',
+      callType: ApiCallType.GET,
+      headers: {
+        ...XiaoXiGroup.headers,
+      },
+      params: {
+        'page': page,
+        'pageSize': pageSize,
+        'receiverId': receiverId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic list(dynamic response) => getJsonField(
+        response,
+        r'''$.data.list''',
+        true,
+      );
+  dynamic total(dynamic response) => getJsonField(
+        response,
+        r'''$.data.total''',
+      );
+  dynamic page(dynamic response) => getJsonField(
+        response,
+        r'''$.data.page''',
+      );
+  dynamic pageSize(dynamic response) => getJsonField(
+        response,
+        r'''$.data.pageSize''',
+      );
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+class UpdateXiaoXiTongZhiCall {
+  Future<ApiCallResponse> call({
+    dynamic? itemJson,
+  }) {
+    final item = _serializeJson(itemJson);
+    final body = '''
+${item}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'updateXiaoXiTongZhi',
+      apiUrl: '${XiaoXiGroup.baseUrl}/xiaoXiTongZhi/updateXiaoXiTongZhi',
+      callType: ApiCallType.PUT,
+      headers: {
+        ...XiaoXiGroup.headers,
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic msg(dynamic response) => getJsonField(
+        response,
+        r'''$.msg''',
+      );
+}
+
+/// End xiaoXi Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

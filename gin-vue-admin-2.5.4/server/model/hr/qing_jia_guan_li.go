@@ -17,12 +17,14 @@ type QingJiaGuanLi struct {
 	KaiShiRiQi      *time.Time `json:"kaiShiRiQi" form:"kaiShiRiQi" gorm:"column:kai_shi_ri_qi;comment:开始日期;"`
 	LeiXing         *int       `json:"leiXing" form:"leiXing" gorm:"column:lei_xing;comment:请假类型;size:10;"`
 	ShenHeRen       string     `json:"shenHeRen" form:"shenHeRen" gorm:"column:shen_he_ren;comment:审核人;size:100;"`
+	ShenHeRenId     *int       `json:"shenHeRenId" form:"shenHeRenId" gorm:"column:shen_he_ren_id;comment:审核人id;size:100;"`
 	ShenHeShiJian   *time.Time `json:"shenHeShiJian" form:"shenHeShiJian" gorm:"column:shen_he_shi_jian;comment:审核时间;"`
 	ShenHeXiangQing string     `json:"shenHeXiangQing" form:"shenHeXiangQing" gorm:"column:shen_he_xiang_qing;comment:审核详情;"`
 	ShenHeZhuangTai string     `json:"shenHeZhuangTai" form:"shenHeZhuangTai" gorm:"column:shen_he_zhuang_tai;comment:审核状态;size:10;"`
 	ShiYou          string     `json:"shiYou" form:"shiYou" gorm:"column:shi_you;comment:事由;"`
 	TianShu         *int       `json:"tianShu" form:"tianShu" gorm:"column:tian_shu;comment:天数;size:10;"`
 	XingMing        string     `json:"xingMing" form:"xingMing" gorm:"column:xing_ming;comment:姓名;size:100;"`
+	XingMingId      *int       `json:"xingMingId" form:"xingMingId" gorm:"column:xing_ming_id;comment:姓名id;size:10;"`
 }
 
 // TableName QingJiaGuanLi 表名

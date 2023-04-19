@@ -104,11 +104,11 @@ func (qingJiaGuanLiApi *QingJiaGuanLiApi) UpdateQingJiaGuanLi(c *gin.Context) {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-	if err := qingJiaGuanLiService.UpdateQingJiaGuanLi(qingJiaGuanLi); err != nil {
+	if res, err := qingJiaGuanLiService.UpdateQingJiaGuanLi(qingJiaGuanLi); err != nil {
 		global.GVA_LOG.Error("更新失败!", zap.Error(err))
 		response.FailWithMessage("更新失败", c)
 	} else {
-		response.OkWithMessage("更新成功", c)
+		response.OkWithData(gin.H{"res": res}, c)
 	}
 }
 

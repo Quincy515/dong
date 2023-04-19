@@ -33,17 +33,17 @@ func (qingJiaGuanLiService *QingJiaGuanLiService) DeleteQingJiaGuanLiByIds(ids r
 
 // UpdateQingJiaGuanLi 更新QingJiaGuanLi记录
 // Author [piexlmax](https://github.com/piexlmax)
-func (qingJiaGuanLiService *QingJiaGuanLiService) UpdateQingJiaGuanLi(qingJiaGuanLi hr.QingJiaGuanLi) (err error) {
+func (qingJiaGuanLiService *QingJiaGuanLiService) UpdateQingJiaGuanLi(qingJiaGuanLi hr.QingJiaGuanLi) (res hr.QingJiaGuanLi, err error) {
 	if qingJiaGuanLi.CreatedAt.IsZero() && qingJiaGuanLi.ID != 0 {
 		var temp hr.QingJiaGuanLi
 		err = global.GVA_DB.Where("id = ?", qingJiaGuanLi.ID).First(&temp).Error
 		if err != nil {
-			return err
+			return qingJiaGuanLi, err
 		}
 		qingJiaGuanLi.CreatedAt = temp.CreatedAt
 	}
 	err = global.GVA_DB.Save(&qingJiaGuanLi).Error
-	return err
+	return qingJiaGuanLi, err
 }
 
 // GetQingJiaGuanLi 根据id获取QingJiaGuanLi记录
